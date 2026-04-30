@@ -34,8 +34,8 @@ body {
 }
 #beige{
     width: 40vmax;
-    bottom: -20vmax;
-    left: -10vmax;
+    bottom: -22vmax;
+    left: -3vmax;
     transform: rotate(-20deg);
 }
 
@@ -192,7 +192,7 @@ body {
     gap: 0.7vmax;
     position: absolute;
     left: 2vmax;
-    top: 15vmax;
+    top: 12vmax;
     width: 22vmax;
 }
 
@@ -222,4 +222,18 @@ body {
 
 #spinner.playing {
     animation: vspin 2s linear infinite;
+}
+
+
+
+@media (max-width: 768px) {
+    .vinyls {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20vmin 5vmin 5vmin 5vmin;
+    }
+
+    .vinyls.compact {
+        grid-template-columns: repeat(1, 1fr);
+        padding-left: 40vw;
+    }
 }
