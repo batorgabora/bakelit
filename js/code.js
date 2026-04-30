@@ -2,12 +2,37 @@ const overlay = document.getElementById('album-overlay');
 const overlayImg = document.getElementById('overlay-cover');
 const overlayTitle = document.getElementById('overlay-title');
 const overlayArtist = document.getElementById('overlay-artist');
+const overlayLabel = document.getElementById('overlay-label');
+const overlayYear = document.getElementById('overlay-year');
+const tracklist = document.getElementById('overlay-tracklist');
+const spinner = document.getElementById('spinner');
+const audio = document.getElementById('overlay-audio');
 
 document.querySelectorAll('.cover').forEach(cover => {
     cover.addEventListener('click', () => {
         const filename = cover.src.split('/').pop();
         const otherside = cover.dataset.otherside || `assets/otherside/${filename}`;
-        
+
+        /* stop current playback before switching to new album */
+        audio.pause();
+        audio.currentTime = 0;
+        spinner.classList.remove('playing');
+
+        const audioFilename = filename.replace(/\.[^.]+$/, '.wav');
+        const audioSrc = cover.dataset.audio || `assets/audio/${audioFilename}`;
+        audio.src = audioSrc;
+        audio.load();
+        audio.play()
+            .then(() => {
+                spinner.classList.add('playing'); /* start spinning when audio plays */
+            })
+            .catch((err) => {
+                /* no audio found, stop everything */
+                audio.pause();
+                spinner.classList.remove('playing');
+                console.error(`no audio found for: ${audioSrc}`, err);
+            });
+
         const test = new Image();
         test.onload = () => { overlayImg.src = otherside; };
         test.onerror = () => { overlayImg.src = cover.src; };
@@ -15,31 +40,54 @@ document.querySelectorAll('.cover').forEach(cover => {
 
         overlayTitle.textContent = cover.dataset.title;
         overlayArtist.textContent = cover.dataset.artist;
+        overlayLabel.textContent = cover.dataset.label;
+        overlayYear.textContent = cover.dataset.year;
+
+        tracklist.innerHTML = '';
+        if (cover.dataset.tracks) {
+            cover.dataset.tracks.split(',').forEach((track, i) => {
+                const p = document.createElement('p');
+                p.innerHTML = `<span>${i + 1}.</span>${track.trim()}`;
+                tracklist.appendChild(p);
+            });
+        }
+
         overlay.style.display = 'flex';
-        document.getElementById('spinner').style.zIndex = 9999999;
+        spinner.style.zIndex = 9999999;
     });
 });
 
 overlay.addEventListener('click', () => {
+    /* audio keeps playing when overlay closes */
+    if (audio.paused) spinner.classList.remove('playing'); /* only stop spinning if audio is already paused */
     overlay.style.display = 'none';
-    document.getElementById('spinner').style.zIndex = 9999;
+    spinner.style.zIndex = 9999;
 });
 
+spinner.addEventListener('click', (e) => {
+    e.stopPropagation(); /* prevent overlay from closing when spinner is clicked */
+    if (audio.paused) {
+        audio.play();
+        spinner.classList.add('playing'); /* start spinning on resume */
+    } else {
+        audio.pause();
+        spinner.classList.remove('playing'); /* stop spinning on pause */
+    }
+});
 
-
-/* lines button functionality for moving vinyls closer to each other and tracklist appearing on the left*/
+/* lines button functionality */
 const lines = document.getElementById('lines');
 const vinyls = document.querySelector('.vinyls');
-const tracklist = document.getElementById('tracklist');
+const albums = document.getElementById('albums');
 
 document.querySelectorAll('.cover').forEach(cover => {
     const link = document.createElement('a');
     link.textContent = cover.dataset.title;
     link.addEventListener('click', () => cover.click());
-    tracklist.appendChild(link);
+    albums.appendChild(link);
 });
 
 lines.addEventListener('click', () => {
     vinyls.classList.toggle('compact');
-    tracklist.style.display = vinyls.classList.contains('compact') ? 'flex' : 'none';
+    albums.style.display = vinyls.classList.contains('compact') ? 'flex' : 'none';
 });
