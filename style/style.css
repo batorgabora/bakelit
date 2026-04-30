@@ -1,0 +1,176 @@
+html, body {
+  background-color: #131414;
+}
+body {
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden;
+  padding: 0;
+  color: #B3AEA5;
+}
+
+:root { 
+    --cover-size: 10vmax;
+    --vinyl-size: 5vmax;
+    --lines-size: 3vmax;
+}
+
+.smudges{
+    border: none;
+    position: fixed;
+    opacity: 0.3;
+}
+
+#green{
+    width: 70vmax;
+    top: -24vmax;
+    left: -30vmax;
+    transform: rotate(30deg);
+}
+#red{
+    width: 75vmax;
+    bottom: -20vmax;
+    right: -50vmax;
+    transform: rotate(100deg);
+}
+#beige{
+    width: 40vmax;
+    bottom: -20vmax;
+    left: -10vmax;
+    transform: rotate(-20deg);
+}
+
+.titulum {
+  text-align: center;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999999;
+}
+.titulum img {
+    width: 9vmax;
+}
+
+.vinyls {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4vw;
+  padding: 20vmin 10vmin 10vmin 10vmin;
+}
+.vinyls.compact {
+    grid-template-columns: repeat(4, 1fr);
+    padding-left: 30vw;
+}
+
+.cover {
+  width: var(--cover-size);
+  height: auto;
+  z-index: 9999;
+  filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
+  cursor: pointer;
+}
+
+.buttons{
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    position: fixed;
+
+    filter: drop-shadow(0 0 15px #000000);
+
+    z-index: 9999;
+}
+
+#spinner {
+    background-image: url("../assets/vinyl.png");
+    width: var(--vinyl-size);
+    height: var(--vinyl-size);
+
+    top: 4vmin;
+    right: 4vmin;
+    z-index: 999999;
+}
+
+#lines {
+    background-image: url("../assets/lines.png");
+    width: var(--lines-size);
+    height: var(--lines-size);
+
+    left: 2vmin;
+    top: 3.5vmin;
+    transform: rotate(1deg);
+}
+
+
+#album-overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+
+    position: fixed;
+    inset: 0;
+
+    background-color: rgba(0, 0, 0, 0.88);
+    z-index: 999999;
+    cursor: pointer;
+}
+
+#overlay-cover {
+    max-height: 40vmin;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(200, 180, 130, 0.2));
+}
+
+#overlay-title {
+    font-size: 3vmin;
+    color: #B3AEA5;
+    margin: 0;
+    font-style: italic;
+    padding-top: 2vmin;
+}
+
+#overlay-artist {
+    font-size: 2vmin;
+    color: rgba(179, 174, 165, 0.6);
+    margin: 0;
+    padding-top: 1vmin;
+}
+
+
+#tracklist {
+    display: none;
+    flex-direction: column;
+    gap: 0.7vmax;
+    position: absolute;
+    left: 2vmax;
+    top: 15vmax;
+    width: 22vmax;
+}
+
+#tracklist a {
+    color: #B3AEA5;
+    text-decoration: none;
+    font-size: 1.2vmax;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#tracklist a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.vinyls.compact #tracklist {
+    display: flex;
+}

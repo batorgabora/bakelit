@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>bakelit</title>
+</head>
+<body>
+    <h2 class="titulum"><img src="assets/titulum.png" alt=""></h2>
+    <img src="assets/smudge-red.png" alt="" id="red" class="smudges">
+    <img src="assets/smudge.png" alt="" id="green" class="smudges">
+    <img src="assets/smudge-beige.png" alt="" id="beige" class="smudges">
+    <button class="buttons" id="spinner"></button>
+    <button class="buttons" id="lines"></button>
+
+    <div id="tracklist">
+        <!-- filled by JS -->
+    </div>
+
+    <div class="vinyls">
+        <img src="assets/covers/dark side of the moon.jpg" alt="" class="cover" data-title="the dark side of the moon" data-artist="pink floyd">
+        <img src="assets/covers/atom heart mother.jpg" alt="" class="cover" data-title="atom heart mother" data-artist="pink floyd">
+        <img src="assets/covers/layla.jpg" alt="" class="cover" data-title="layla and other assorted love songs" data-artist="derek and the dominos">
+        <img src="assets/covers/in rainbows.jpg" alt="" class="cover" data-title="in rainbows" data-artist="radiohead">
+        <img src="assets/covers/live at pompeii.jpg" alt="" class="cover" data-title="live at pompeii" data-artist="pink floyd">
+        <img src="assets/covers/hotel california.jpg" alt="" class="cover" data-title="hotel california" data-artist="eagles">
+        <img src="assets/covers/ram.jpg" alt="" class="cover" data-title="ram" data-artist="paul mccartney">
+        <img src="assets/covers/breakfast in america.jpg" alt="" class="cover" data-title="breakfast in america" data-artist="supertramp">
+        <img src="assets/covers/strange days.jpg" alt="" class="cover" data-title="strange days" data-artist="the doors">
+        <img src="assets/covers/fehér babák takarodója.jpg" alt="" class="cover" data-title="fehér babák takarodója" data-artist="cseh tamás">
+        <img src="assets/covers/sgt peppers.jpg" alt="" class="cover" data-title="sgt. pepper's lonely hearts club band" data-artist="the beatles">
+        <img src="assets/covers/brothers in arms.jpg" alt="" class="cover" data-title="brothers in arms" data-artist="dire straits">
+    </div>
+
+    <div id="album-overlay">
+        <h2 class="titulum"><img src="assets/titulum smudged.png" alt=""></h2>
+        <img id="overlay-cover" src="" alt="">
+        <div id="overlay-info">
+            <h3 id="overlay-title"></h3>
+            <p id="overlay-artist"></p>
+        </div>
+    </div>
+
+    <script src="js/code.js" defer></script>
+</body>
+</html>
