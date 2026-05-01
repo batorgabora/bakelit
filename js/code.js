@@ -12,6 +12,7 @@ document.querySelectorAll('.cover').forEach(cover => {
     cover.addEventListener('click', () => {
         const filename = cover.src.split('/').pop();
         const otherside = cover.dataset.otherside || `assets/otherside/${filename}`;
+        spinner.classList.add('enlarged');
 
         /* stop current playback before switching to new album */
         audio.pause();
@@ -59,9 +60,10 @@ document.querySelectorAll('.cover').forEach(cover => {
 
 overlay.addEventListener('click', () => {
     /* audio keeps playing when overlay closes */
-    if (audio.paused) spinner.classList.remove('playing'); /* only stop spinning if audio is already paused */
+    if (audio.paused) spinner.classList.remove('playing');
     overlay.style.display = 'none';
     spinner.style.zIndex = 9999;
+    spinner.classList.remove('enlarged');
 });
 
 spinner.addEventListener('click', (e) => {

@@ -214,14 +214,22 @@ body {
     display: flex;
 }
 
-/* spin animation for vinyl button when audio is playing */
 @keyframes vspin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
 }
-
+@keyframes vspin-large {
+    from { transform: scale(1.5) rotate(0deg); }
+    to { transform: scale(1.5) rotate(360deg); }
+}
 #spinner.playing {
     animation: vspin 2s linear infinite;
+}
+#spinner.enlarged {
+    transform: scale(1.5);
+}
+#spinner.enlarged.playing {
+    animation: vspin-large 2s linear infinite;
 }
 
 
