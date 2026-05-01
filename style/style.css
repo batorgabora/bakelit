@@ -149,6 +149,7 @@ body {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 30px rgba(200, 180, 130, 0.2));
+    padding-top: 5vmax;
 }
 
 #overlay-title {
