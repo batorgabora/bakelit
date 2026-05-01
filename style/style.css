@@ -230,17 +230,17 @@ body {
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
         padding: 20vmin 5vmin 5vmin 5vmin;
-        gap: 10vmin;
+        gap: 15vmin;
         align-items: center;
     }
 
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
-        padding-left: 60vw;
+        padding-left: 70vw;
         padding-right: 2vmax;
     }
 
     .cover{
-        width: 17vmax;
+        width: 15vmax;
     }
 }
