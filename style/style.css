@@ -244,7 +244,7 @@ body {
 
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
-        padding-left: 70vw;
+        padding-left: 60vw;
         padding-right: 2vmax;
     }
 
