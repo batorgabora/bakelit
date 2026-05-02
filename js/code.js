@@ -8,31 +8,36 @@ const tracklist = document.getElementById('overlay-tracklist');
 const spinner = document.getElementById('spinner');
 const audio = document.getElementById('overlay-audio');
 
+let currentAudioSrc = null;
+
 document.querySelectorAll('.cover').forEach(cover => {
     cover.addEventListener('click', () => {
         const filename = cover.src.split('/').pop();
         const otherside = cover.dataset.otherside || `assets/otherside/${filename}`;
-        spinner.classList.add('enlarged');
-
-        /* stop current playback before switching to new album */
-        audio.pause();
-        audio.currentTime = 0;
-        spinner.classList.remove('playing');
-
         const audioFilename = filename.replace(/\.[^.]+$/, '.wav');
         const audioSrc = cover.dataset.audio || `assets/audio/${audioFilename}`;
-        audio.src = audioSrc;
-        audio.load();
-        audio.play()
-            .then(() => {
-                spinner.classList.add('playing'); /* start spinning when audio plays */
-            })
-            .catch((err) => {
-                /* no audio found, stop everything */
-                audio.pause();
-                spinner.classList.remove('playing');
-                console.error(`no audio found for: ${audioSrc}`, err);
-            });
+
+        spinner.classList.add('enlarged');
+
+        /* only switch audio if a different album is opened */
+        if (audioSrc !== currentAudioSrc) {
+            currentAudioSrc = audioSrc;
+            audio.pause();
+            audio.currentTime = 0;
+            spinner.classList.remove('playing');
+
+            audio.src = audioSrc;
+            audio.load();
+            audio.play()
+                .then(() => {
+                    spinner.classList.add('playing');
+                })
+                .catch((err) => {
+                    audio.pause();
+                    spinner.classList.remove('playing');
+                    console.error(`no audio found for: ${audioSrc}`, err);
+                });
+        }
 
         const test = new Image();
         test.onload = () => { overlayImg.src = otherside; };
