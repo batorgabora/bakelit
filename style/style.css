@@ -149,21 +149,21 @@ body {
     color: #B3AEA5;
     margin: 0;
     font-style: italic;
-    padding-top: 2vmin;
+    padding: 2vmin 2vmin 2vmin 0;
 }
 
 #overlay-artist {
     font-size: 2.1vmin;
     color: rgba(179, 174, 165, 0.75);
     margin: 0;
-    padding-top: 1vmin;
+    padding: 1vmin 2vmin 2vmin 0;
 }
 
 #overlay-label {
     font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
-    padding-top: 0.5vmin;
+    padding: 0.5vmin 2vmin 2vmin 0;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -172,13 +172,14 @@ body {
     font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
+    padding: 0.1vmin 2vmin 2vmin 0;
 }
 
 #overlay-tracklist {
     display: flex;
     flex-direction: column;
     gap: 0.4vmin;
-    padding-top: 4vmin;
+    padding: 4vmin 2vmin 2vmin 0;
     text-align: left;
     width: 100%;
 }
@@ -203,7 +204,7 @@ body {
     white-space: pre-line;
     text-align: left;
     max-width: 30vw;
-    padding-top: 8vmin;
+    padding: 8vmin 2vmin 2vmin 0;
     line-height: 1.8;
 }
 
