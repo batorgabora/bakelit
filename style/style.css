@@ -128,27 +128,6 @@ body {
     cursor: pointer;
 }
 
-#overlay-tracklist {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4vmin;
-    padding-top: 2vmin;
-    text-align: left;
-    width: 100%;
-}
-
-#overlay-tracklist p {
-    font-size: 1.6vmin;
-    color: rgba(220, 211, 193, 0.5);
-    margin: 0;
-    font-style: italic;
-}
-
-#overlay-tracklist p span {
-    color: rgba(220, 211, 193, 0.5);
-    margin-right: 1vmin;
-}
-
 #overlay-cover {
     max-height: 40vmin;
     width: auto;
@@ -166,14 +145,14 @@ body {
 
 #overlay-artist {
     font-size: 2vmin;
-    color: rgba(179, 174, 165, 0.6);
+    color: rgba(179, 174, 165, 0.75);
     margin: 0;
     padding-top: 1vmin;
 }
 
 #overlay-label {
     font-size: 1.6vmin;
-    color: rgba(199, 190, 171, 0.4);
+    color: rgba(199, 190, 171, 0.55);
     margin: 0;
     padding-top: 0.5vmin;
     text-transform: uppercase;
@@ -182,8 +161,41 @@ body {
 
 #overlay-year {
     font-size: 1.6vmin;
-    color: rgba(199, 190, 171, 0.4);
+    color: rgba(199, 190, 171, 0.55);
     margin: 0;
+}
+
+#overlay-tracklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vmin;
+    padding-top: 4vmin;
+    text-align: left;
+    width: 100%;
+}
+
+#overlay-tracklist p {
+    font-size: 1.6vmin;
+    color: rgba(220, 211, 193, 0.65);
+    margin: 0;
+    font-style: italic;
+}
+
+#overlay-tracklist p span {
+    color: rgba(220, 211, 193, 0.65);
+    margin-right: 1vmin;
+}
+
+#overlay-lyrics {
+    display: none;
+    font-size: 1.4vmin;
+    color: rgba(179, 174, 165, 0.55);
+    font-style: italic;
+    white-space: pre-line;
+    text-align: left;
+    max-width: 30vw;
+    padding-top: 8vmin;
+    line-height: 1.8;
 }
 
 
