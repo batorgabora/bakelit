@@ -49,6 +49,15 @@ function setPlayerImage(playing) {
         : 'assets/lejátszó tele.png';          /* arm up = stopped */
 }
 
+/* highlight the active track in the tracklist */
+function restoreHighlight() {
+    document.querySelectorAll('#overlay-tracklist p').forEach((p, i) => {
+        p.style.color = i === trackIndex
+            ? 'rgba(179, 174, 165, 0.9)'
+            : 'rgba(179, 174, 165, 0.5)';
+    });
+}
+
 /* plays a specific track by index from the current album */
 function playTrack(index) {
     if (index >= currentTracks.length) return;
@@ -62,12 +71,7 @@ function playTrack(index) {
         .then(() => {
             spinner.classList.add('playing'); /* start spinning when audio plays */
             setPlayerImage(true); /* arm down when playing */
-            /* highlight current track in tracklist */
-            document.querySelectorAll('#overlay-tracklist p').forEach((p, i) => {
-                p.style.color = i === index
-                    ? 'rgba(179, 174, 165, 0.9)'
-                    : 'rgba(179, 174, 165, 0.5)';
-            });
+            restoreHighlight(); /* highlight current track in tracklist */
             showLyrics(trackName); /* show lyrics for this track */
         })
         .catch(() => {
@@ -93,7 +97,7 @@ document.querySelectorAll('.cover').forEach(cover => {
         spinner.classList.add('enlarged');
 
         if (albumTitle === currentAlbumTitle) {
-            /* same album — restore lyrics for currently playing track */
+            /* same album — restore lyrics and highlight for currently playing track */
             showLyrics(currentTracks[trackIndex] || '');
         } else {
             /* different album — clear lyrics until new track starts playing */
@@ -126,11 +130,18 @@ document.querySelectorAll('.cover').forEach(cover => {
         overlayLabel.textContent = cover.dataset.label;
         overlayYear.textContent = cover.dataset.year;
 
+        /* rebuild tracklist and restore highlight if same album */
         tracklist.innerHTML = '';
         if (cover.dataset.tracks) {
             cover.dataset.tracks.split(',').forEach((track, i) => {
                 const p = document.createElement('p');
                 p.innerHTML = `<span>${i + 1}.</span>${track.trim()}`;
+                /* restore highlight for currently playing track */
+                if (albumTitle === currentAlbumTitle) {
+                    p.style.color = i === trackIndex
+                        ? 'rgba(179, 174, 165, 0.9)'
+                        : 'rgba(179, 174, 165, 0.5)';
+                }
                 /* make tracks clickable to jump to that track */
                 p.style.cursor = 'pointer';
                 p.addEventListener('click', (e) => {
@@ -150,7 +161,7 @@ document.querySelectorAll('.cover').forEach(cover => {
 overlay.addEventListener('click', () => {
     /* audio keeps playing when overlay closes */
     if (audio.paused) {
-        spinner.classList.remove('playing');
+        spinner.classList.remove('playing'); /* only stop spinning if audio is already paused */
     }
     setPlayerImage(!audio.paused); /* arm down if still playing, up if paused */
     overlay.style.display = 'none';
