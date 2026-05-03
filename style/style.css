@@ -64,7 +64,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 3.5vw;
-  padding: 20vmin 11vmin 11vmin 10vmin;
+  padding: 20vmin 12vmin 12vmin 10vmin;
 }
 .vinyls.compact {
     grid-template-columns: repeat(4, 1fr);
@@ -145,7 +145,7 @@ body {
 }
 
 #overlay-title {
-    font-size: 3vmin;
+    font-size: 3.1vmin;
     color: #B3AEA5;
     margin: 0;
     font-style: italic;
@@ -153,14 +153,14 @@ body {
 }
 
 #overlay-artist {
-    font-size: 2vmin;
+    font-size: 2.1vmin;
     color: rgba(179, 174, 165, 0.75);
     margin: 0;
     padding-top: 1vmin;
 }
 
 #overlay-label {
-    font-size: 1.6vmin;
+    font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
     padding-top: 0.5vmin;
@@ -169,7 +169,7 @@ body {
 }
 
 #overlay-year {
-    font-size: 1.6vmin;
+    font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
 }
@@ -184,7 +184,7 @@ body {
 }
 
 #overlay-tracklist p {
-    font-size: 1.6vmin;
+    font-size: 1.7vmin;
     color: rgba(220, 211, 193, 0.65);
     margin: 0;
     font-style: italic;
@@ -197,7 +197,7 @@ body {
 
 #overlay-lyrics {
     display: none;
-    font-size: 1.4vmin;
+    font-size: 1.5vmin;
     color: rgba(179, 174, 165, 0.55);
     font-style: italic;
     white-space: pre-line;
@@ -222,7 +222,7 @@ body {
 #albums a {
     color: #B3AEA5;
     text-decoration: none;
-    font-size: 1.2vmax;
+    font-size: 2vmin;
     font-style: italic;
     cursor: pointer;
     transition: color 0.2s;
@@ -259,23 +259,45 @@ body {
 }
 
 
-
-/* media query for phone view */
 @media (max-width: 768px) {
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
         padding: 20vmin 7vmin 7vmin 5vmin;
-        gap: 10vmin;
+        gap: 7vmin;
         align-items: center;
+        justify-items: center;
     }
-
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
         padding-left: 60%;
         padding-right: 2vmax;
     }
-
-    .cover{
+    .cover {
         width: 15vmax;
+    }
+    #overlay-title { font-size: 5vmin; }
+    #overlay-artist { font-size: 3.5vmin; }
+    #overlay-label, #overlay-year { font-size: 3vmin; }
+    #overlay-tracklist p { font-size: 3vmin; }
+    #overlay-lyrics { font-size: 2.5vmin; max-width: 80vw; }
+    #albums a { font-size: 3vmin; }
+}
+
+@media (min-width: 769px) and (max-width: 999px) {
+    .vinyls {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+    #overlay-title { font-size: 3.5vmin; }
+    #overlay-artist { font-size: 2.5vmin; }
+    #overlay-label, #overlay-year { font-size: 2vmin; }
+    #overlay-tracklist p { font-size: 2vmin; }
+    #overlay-lyrics { max-width: 50vw; }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .vinyls {
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
     }
 }
