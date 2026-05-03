@@ -243,8 +243,8 @@ body {
 @media (max-width: 768px) {
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
-        padding: 20vmin 5vmin 5vmin 5vmin;
-        gap: 15vmin;
+        padding: 20vmin 7vmin 7vmin 5vmin;
+        gap: 10vmin;
         align-items: center;
     }
 
