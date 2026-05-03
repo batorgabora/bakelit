@@ -9,9 +9,19 @@ body {
 }
 
 :root { 
-    --cover-size: 10vmax;
-    --vinyl-size: 5vmax;
+    --cover-size: 17vmin;
+    --vinyl-size: 10vmin;
     --lines-size: 3vmax;
+}
+
+#player {
+    position: fixed;
+    width: calc(var(--vinyl-size) * 1.4);
+    height: auto;
+    top: -2.4vmin;
+    right: 1.4vmin;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 .smudges{
@@ -19,7 +29,6 @@ body {
     position: fixed;
     opacity: 0.3;
 }
-
 #green{
     width: 70vmax;
     top: -24vmax;
@@ -65,7 +74,7 @@ body {
 .cover {
   width: var(--cover-size);
   height: auto;
-  z-index: 9999;
+  z-index: 99999;
   filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
   cursor: pointer;
 }
@@ -96,7 +105,7 @@ body {
 
     top: 4vmin;
     right: 4vmin;
-    z-index: 999999;
+    z-index: 9998;
 }
 
 #lines {

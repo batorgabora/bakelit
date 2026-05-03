@@ -6,6 +6,7 @@ const overlayLabel = document.getElementById('overlay-label');
 const overlayYear = document.getElementById('overlay-year');
 const tracklist = document.getElementById('overlay-tracklist');
 const spinner = document.getElementById('spinner');
+const player = document.getElementById('player'); /* record player image */
 const audio = document.getElementById('overlay-audio');
 audio.volume = 0.3;
 
@@ -24,6 +25,7 @@ async function loadLyrics(albumTitle) {
         currentLyrics = {}; /* no lyrics file, just show nothing */
     }
 }
+
 /* show lyrics for the current track in #overlay-lyrics */
 function showLyrics(trackName) {
     const lyricsEl = document.getElementById('overlay-lyrics');
@@ -33,9 +35,18 @@ function showLyrics(trackName) {
         lyricsEl.textContent = text;
         lyricsEl.style.display = 'block';
     } else {
+        /* no lyrics for this track, hide the element */
         lyricsEl.textContent = '';
         lyricsEl.style.display = 'none';
     }
+}
+
+/* switch player image to show arm down (playing) or up (stopped) */
+function setPlayerImage(playing) {
+    if (!player) return;
+    player.src = playing
+        ? 'assets/lejátszó tele játszik.png'  /* arm down = playing */
+        : 'assets/lejátszó tele.png';          /* arm up = stopped */
 }
 
 /* plays a specific track by index from the current album */
@@ -49,7 +60,8 @@ function playTrack(index) {
     audio.load();
     audio.play()
         .then(() => {
-            spinner.classList.add('playing');
+            spinner.classList.add('playing'); /* start spinning when audio plays */
+            setPlayerImage(true); /* arm down when playing */
             /* highlight current track in tracklist */
             document.querySelectorAll('#overlay-tracklist p').forEach((p, i) => {
                 p.style.color = i === index
@@ -58,7 +70,7 @@ function playTrack(index) {
             });
             showLyrics(trackName); /* show lyrics for this track */
         })
-        .catch((err) => {
+        .catch(() => {
             /* no file for this track, skip to next */
             console.warn(`skipping track ${paddedNum} ${trackName}: not found`);
             trackIndex++;
@@ -80,7 +92,6 @@ document.querySelectorAll('.cover').forEach(cover => {
 
         spinner.classList.add('enlarged');
 
-        /* if same album, restore lyrics for currently playing track */
         if (albumTitle === currentAlbumTitle) {
             /* same album — restore lyrics for currently playing track */
             showLyrics(currentTracks[trackIndex] || '');
@@ -99,7 +110,8 @@ document.querySelectorAll('.cover').forEach(cover => {
 
             audio.pause();
             audio.currentTime = 0;
-            spinner.classList.remove('playing');
+            spinner.classList.remove('playing'); /* stop spinning when switching album */
+            setPlayerImage(false); /* arm up when stopped */
 
             loadLyrics(albumTitle).then(() => playTrack(trackIndex)); /* load lyrics then play */
         }
@@ -137,7 +149,10 @@ document.querySelectorAll('.cover').forEach(cover => {
 
 overlay.addEventListener('click', () => {
     /* audio keeps playing when overlay closes */
-    if (audio.paused) spinner.classList.remove('playing'); /* only stop spinning if audio is already paused */
+    if (audio.paused) {
+        spinner.classList.remove('playing');
+    }
+    setPlayerImage(!audio.paused); /* arm down if still playing, up if paused */
     overlay.style.display = 'none';
     spinner.style.zIndex = 9999;
     spinner.classList.remove('enlarged');
@@ -148,9 +163,11 @@ spinner.addEventListener('click', (e) => {
     if (audio.paused) {
         audio.play();
         spinner.classList.add('playing'); /* start spinning on resume */
+        setPlayerImage(true); /* arm down on resume */
     } else {
         audio.pause();
         spinner.classList.remove('playing'); /* stop spinning on pause */
+        setPlayerImage(false); /* arm up on pause */
     }
 });
 
