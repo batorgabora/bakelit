@@ -80,7 +80,14 @@ document.querySelectorAll('.cover').forEach(cover => {
 
         spinner.classList.add('enlarged');
 
-        showLyrics('');
+        /* if same album, restore lyrics for currently playing track */
+        if (albumTitle === currentAlbumTitle) {
+            /* same album — restore lyrics for currently playing track */
+            showLyrics(currentTracks[trackIndex] || '');
+        } else {
+            /* different album — clear lyrics until new track starts playing */
+            showLyrics('');
+        }
 
         /* only switch audio if a different album is opened */
         if (albumTitle !== currentAlbumTitle) {
