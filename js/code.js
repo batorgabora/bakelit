@@ -4,6 +4,7 @@ const overlayTitle = document.getElementById('overlay-title');
 const overlayArtist = document.getElementById('overlay-artist');
 const overlayLabel = document.getElementById('overlay-label');
 const overlayYear = document.getElementById('overlay-year');
+const overlayRuntime = document.getElementById('overlay-runtime');
 const tracklist = document.getElementById('overlay-tracklist');
 const spinner = document.getElementById('spinner');
 const player = document.getElementById('player'); /* record player image */
@@ -129,6 +130,7 @@ document.querySelectorAll('.cover').forEach(cover => {
         overlayArtist.textContent = cover.dataset.artist;
         overlayLabel.textContent = cover.dataset.label;
         overlayYear.textContent = cover.dataset.year;
+        overlayRuntime.textContent = cover.dataset.runtime || '';
 
         /* rebuild tracklist and restore highlight if same album */
         tracklist.innerHTML = '';

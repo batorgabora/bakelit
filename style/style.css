@@ -28,7 +28,7 @@ footer {
     position: fixed;
     width: calc(var(--vinyl-size) * 1.4);
     height: auto;
-    top: -2.4vmin;
+    top: -2.3vmin;
     right: 1.4vmin;
     z-index: 99999;
     pointer-events: none;
@@ -183,6 +183,14 @@ footer {
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
     padding: 0.1vmin 2vmin 0 2vmin;
+}
+
+#overlay-runtime {
+    font-size: 1.6vmin;
+    color: rgba(199, 190, 171, 0.35);
+    margin: 0;
+    padding: 0.5vmin 2vmin 0 2vmin;
+    letter-spacing: 0.05em;
 }
 
 #overlay-tracklist {
