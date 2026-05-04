@@ -39,7 +39,7 @@ footer {
     transform: translateX(100%) rotate(90deg);
     transform-origin: left;
     right: 2vmin; /* change this value to match needs */
-    top: 17vmin; /* change this value to match needs */
+    top: 20vmin; /* change this value to match needs */
     font-size: 80%;
     color: rgba(199, 190, 171, 0.55);
 }
@@ -57,15 +57,15 @@ footer {
 }
 #red{
     width: 75vmax;
-    bottom: -20vmax;
+    bottom: -24vmax;
     right: -50vmax;
     transform: rotate(100deg);
 }
 #beige{
     width: 40vmax;
-    bottom: -22vmax;
-    left: -3vmax;
-    transform: rotate(-20deg);
+    bottom: -8vmax;
+    left: -28vmax;
+    transform: rotate(-60deg);
 }
 
 .titulum {
@@ -255,7 +255,7 @@ footer {
     flex-direction: column;
     gap: 0.7vmax;
     position: absolute;
-    left: 2vmax;
+    left: 4vmax;
     top: 12vmax;
     width: 22vmax;
 }
@@ -263,7 +263,7 @@ footer {
 #albums a {
     color: #B3AEA5;
     text-decoration: none;
-    font-size: 2vmin;
+    font-size: 1.8vmin;
     font-style: italic;
     cursor: pointer;
     transition: color 0.2s;
