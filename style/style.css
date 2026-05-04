@@ -7,6 +7,16 @@ body {
   padding: 0;
   color: #B3AEA5;
 }
+footer {
+    text-align: left;
+    font-size: 1.3vmin;
+    color: rgba(204, 198, 186, 0.3);
+    padding: 4vmin 0 0 2vmin;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
 
 :root { 
     --cover-size: 10vmax;
