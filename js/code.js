@@ -50,9 +50,9 @@ function setPlayerImage(playing) {
         : 'assets/lejátszó tele.png';          /* arm up = stopped */
 }
 
-/* highlight the active track in the tracklist */
+/* highlight the active track in the tracklist with guard for side names*/
 function restoreHighlight() {
-    document.querySelectorAll('#overlay-tracklist p').forEach((p, i) => {
+    document.querySelectorAll('#overlay-tracklist p:not(.side-label)').forEach((p, i) => {
         p.style.color = i === trackIndex
             ? 'rgba(179, 174, 165, 0.9)'
             : 'rgba(179, 174, 165, 0.5)';
@@ -135,23 +135,49 @@ document.querySelectorAll('.cover').forEach(cover => {
         /* rebuild tracklist and restore highlight if same album */
         tracklist.innerHTML = '';
         if (cover.dataset.tracks) {
-            cover.dataset.tracks.split(',').forEach((track, i) => {
-                const p = document.createElement('p');
-                p.innerHTML = `<span>${i + 1}.</span>${track.trim()}`;
-                /* restore highlight for currently playing track */
-                if (albumTitle === currentAlbumTitle) {
-                    p.style.color = i === trackIndex
-                        ? 'rgba(179, 174, 165, 0.9)'
-                        : 'rgba(179, 174, 165, 0.5)';
+            const tracks = cover.dataset.tracks.split(',').map(t => t.trim());
+
+            /* parse data-sides into [{name, count}] objects
+            format: "side a:5,side b:5" or "eeny:6,meeny:6" etc.
+            if no data-sides attribute, sides stays empty and labels are skipped */
+            const sides = cover.dataset.sides
+                ? cover.dataset.sides.split(',').map(s => {
+                    const [name, count] = s.split(':');
+                    return { name: name.trim(), count: parseInt(count) };
+                })
+                : [];
+
+            let sideIdx = 0;        /* which side we're currently on */
+            let sideTrackCount = 0; /* how many tracks we've placed on the current side */
+
+            tracks.forEach((track, i) => {
+                /* insert a side label whenever a new side begins */
+                if (sides.length && (i === 0 || sideTrackCount === 0)) {
+                    const label = document.createElement('p');
+                    label.className = 'side-label';
+                    label.textContent = (sides[sideIdx]?.name ?? '');
+                    tracklist.appendChild(label);
                 }
-                /* make tracks clickable to jump to that track */
+
+                /* build the track row */
+                const p = document.createElement('p');
+                p.innerHTML = `<span>${i + 1}.</span>${track}`;
                 p.style.cursor = 'pointer';
+
+                /* clicking a track jumps playback to that position */
                 p.addEventListener('click', (e) => {
                     e.stopPropagation();
                     trackIndex = i;
                     playTrack(trackIndex);
                 });
                 tracklist.appendChild(p);
+
+                /* advance the side counter; move to next side when current one is full */
+                sideTrackCount++;
+                if (sides.length && sides[sideIdx] && sideTrackCount >= sides[sideIdx].count) {
+                    sideIdx++;
+                    sideTrackCount = 0;
+                }
             });
         }
 

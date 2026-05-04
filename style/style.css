@@ -193,6 +193,19 @@ footer {
     letter-spacing: 0.05em;
 }
 
+.side-label {
+    font-size: 1.4vmin;
+    color: rgba(199, 190, 171, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 1.8vmin 0 0.6vmin 0;
+    padding: 2vmin 2vmin 1vmin 2vmin;
+    font-style: normal;
+}
+.side-label:first-child {
+    margin-top: 0;
+}
+
 #overlay-tracklist {
     display: flex;
     flex-direction: column;
