@@ -34,6 +34,16 @@ footer {
     pointer-events: none;
 }
 
+#currentsong{
+    position: fixed;
+    transform: translateX(100%) rotate(90deg);
+    transform-origin: left;
+    right: 2vmin; /* change this value to match needs */
+    top: 17vmin; /* change this value to match needs */
+    font-size: 80%;
+    color: rgba(199, 190, 171, 0.55);
+}
+
 .smudges{
     border: none;
     position: fixed;
@@ -69,6 +79,7 @@ footer {
 .titulum img {
     width: 9vmax;
 }
+
 
 .vinyls {
   display: grid;

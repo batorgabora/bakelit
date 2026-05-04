@@ -6,6 +6,7 @@ const overlayLabel = document.getElementById('overlay-label');
 const overlayYear = document.getElementById('overlay-year');
 const overlayRuntime = document.getElementById('overlay-runtime');
 const tracklist = document.getElementById('overlay-tracklist');
+const currentsong = document.getElementById('currentsong');
 const spinner = document.getElementById('spinner');
 const player = document.getElementById('player'); /* record player image */
 const audio = document.getElementById('overlay-audio');
@@ -74,6 +75,7 @@ function playTrack(index) {
             setPlayerImage(true); /* arm down when playing */
             restoreHighlight(); /* highlight current track in tracklist */
             showLyrics(trackName); /* show lyrics for this track */
+            currentsong.textContent = `${trackName}`;
         })
         .catch(() => {
             /* no file for this track, skip to next */
