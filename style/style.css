@@ -9,8 +9,8 @@ body {
 }
 footer {
     text-align: left;
-    font-size: 1.3vmin;
-    color: rgba(204, 198, 186, 0.3);
+    font-size: 1vmin;
+    color: rgba(188, 183, 175, 0.3);
     padding: 4vmin 0 0 2vmin;
     position: relative;
     bottom: 0;
