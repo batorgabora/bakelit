@@ -198,3 +198,20 @@ lines.addEventListener('click', () => {
     vinyls.classList.toggle('compact');
     albums.style.display = vinyls.classList.contains('compact') ? 'flex' : 'none';
 });
+
+
+/* space toggles audio playback */
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        e.preventDefault();
+        if (audio.paused) {
+            audio.play();
+            spinner.classList.add('playing');
+            setPlayerImage(true);
+        } else {
+            audio.pause();
+            spinner.classList.remove('playing');
+            setPlayerImage(false);
+        }
+    }
+});
