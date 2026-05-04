@@ -9,7 +9,7 @@ body {
 }
 
 :root { 
-    --cover-size: 18vmin;
+    --cover-size: 10vmax;
     --vinyl-size: 10vmin;
     --lines-size: 3vmax;
 }
@@ -20,7 +20,7 @@ body {
     height: auto;
     top: -2.4vmin;
     right: 1.4vmin;
-    z-index: 9999;
+    z-index: 99999;
     pointer-events: none;
 }
 
@@ -63,7 +63,7 @@ body {
 .vinyls {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 3.0vw;
+  gap: 3.0vmax;
   padding: 20vmin 12vmin 12vmin 10vmin;
 }
 .vinyls.compact {
@@ -105,7 +105,7 @@ body {
 
     top: 4vmin;
     right: 4vmin;
-    z-index: 9998;
+    z-index: 9999;
 }
 
 #lines {
@@ -149,21 +149,21 @@ body {
     color: #B3AEA5;
     margin: 0;
     font-style: italic;
-    padding: 2vmin 2vmin 2vmin 0;
+    padding: 0.8vmin 2vmin 0 2vmin;
 }
 
 #overlay-artist {
     font-size: 2.1vmin;
     color: rgba(179, 174, 165, 0.75);
     margin: 0;
-    padding: 1vmin 2vmin 2vmin 0;
+    padding: 0.6vmin 2vmin 0 2vmin;
 }
 
 #overlay-label {
     font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
-    padding: 0.5vmin 2vmin 2vmin 0;
+    padding: 0.8vmin 2vmin 0vmin 2vmin;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -172,20 +172,20 @@ body {
     font-size: 1.7vmin;
     color: rgba(199, 190, 171, 0.55);
     margin: 0;
-    padding: 0.1vmin 2vmin 2vmin 0;
+    padding: 0.1vmin 2vmin 0 2vmin;
 }
 
 #overlay-tracklist {
     display: flex;
     flex-direction: column;
     gap: 0.4vmin;
-    padding: 4vmin 2vmin 2vmin 0;
+    padding: 4vmin 2vmin 0 2vmin;
     text-align: left;
     width: 100%;
 }
 
 #overlay-tracklist p {
-    font-size: 1.7vmin;
+    font-size: 1.6vmin;
     color: rgba(220, 211, 193, 0.65);
     margin: 0;
     font-style: italic;
@@ -260,7 +260,7 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
         padding: 20vmin 7vmin 7vmin 5vmin;
@@ -270,25 +270,23 @@ body {
     }
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
-        padding-left: 60%;
+        padding-left: 40%;
         padding-right: 2vmax;
     }
     .cover {
         width: 15vmax;
     }
-    #overlay-title { font-size: 5vmin; }
-    #overlay-artist { font-size: 3.5vmin; }
-    #overlay-label, #overlay-year { font-size: 3vmin; }
-    #overlay-tracklist p { font-size: 3vmin; }
-    #overlay-lyrics { font-size: 2.5vmin; max-width: 80vw; }
-    #albums a { font-size: 3vmin; }
 }
 
-@media (min-width: 600px) and (max-width: 900px) {
+@media (min-width: 701px) and (max-width: 900px) {
     .vinyls {
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
     }
+    .vinyls.compact {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     #overlay-title { font-size: 3.5vmin; }
     #overlay-artist { font-size: 2.5vmin; }
     #overlay-label, #overlay-year { font-size: 2vmin; }
@@ -300,5 +298,8 @@ body {
     .vinyls {
         grid-template-columns: repeat(4, 1fr);
         justify-items: center;
+    }
+    .vinyls.compact {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
