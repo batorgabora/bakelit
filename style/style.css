@@ -20,7 +20,7 @@ footer {
 
 :root { 
     --cover-size: 10vmax;
-    --vinyl-size: 10vmin;
+    --vinyl-size: 11.4vmin;
     --lines-size: 3vmax;
 }
 
@@ -28,8 +28,8 @@ footer {
     position: fixed;
     width: calc(var(--vinyl-size) * 1.4);
     height: auto;
-    top: -2.3vmin;
-    right: 1.4vmin;
+    top: -2.0vmin;
+    right: 0.8vmin;
     z-index: 99999;
     pointer-events: none;
 }
@@ -69,6 +69,8 @@ footer {
 }
 
 .titulum {
+  width: 170%;
+  height: auto;
   text-align: center;
   border: none;
   position: absolute;
@@ -124,8 +126,8 @@ footer {
     width: var(--vinyl-size);
     height: var(--vinyl-size);
 
-    top: 4vmin;
-    right: 4vmin;
+    top: 5.0vmin;
+    right: 3.2vmin;
     z-index: 9999;
 }
 
