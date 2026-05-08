@@ -20,26 +20,30 @@ footer {
 
 :root { 
     --cover-size: 10vmax;
-    --vinyl-size: 11.4vmin;
+    --vinyl-size: 14vmin;
     --lines-size: 3vmax;
 }
 
-#player {
+#player, #arm {
     position: fixed;
-    width: calc(var(--vinyl-size) * 1.4);
+    width: calc(var(--vinyl-size) * 1.25);
     height: auto;
     top: -2.0vmin;
     right: 0.8vmin;
-    z-index: 99999;
+    z-index: 9999;
     pointer-events: none;
 }
+#arm{
+    z-index: 99999;
+}
+
 
 #currentsong{
     position: fixed;
     transform: translateX(100%) rotate(90deg);
     transform-origin: left;
     right: 2vmin; /* change this value to match needs */
-    top: 20vmin; /* change this value to match needs */
+    top: 24vmin; /* change this value to match needs */
     font-size: 80%;
     color: rgba(199, 190, 171, 0.55);
 }
@@ -86,8 +90,8 @@ footer {
 .vinyls {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 3.0vmax;
-  padding: 20vmin 12vmin 12vmin 10vmin;
+  gap: 2.5vmax;
+  padding: 23vmin 14vmin 14vmin 10vmin;
 }
 .vinyls.compact {
     grid-template-columns: repeat(4, 1fr);
@@ -97,7 +101,7 @@ footer {
 .cover {
   width: var(--cover-size);
   height: auto;
-  z-index: 99999;
+  z-index: 99;
   filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
   cursor: pointer;
 }
@@ -127,8 +131,27 @@ footer {
     height: var(--vinyl-size);
 
     top: 5.0vmin;
-    right: 3.2vmin;
+    right: 3.9vmin;
     z-index: 9999;
+}
+
+/* spinning disk for both overlay and regular view */
+@keyframes vspin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+@keyframes vspin-large {
+    from { transform: scale(1.5) rotate(0deg); }
+    to { transform: scale(1.5) rotate(360deg); }
+}
+#spinner.playing {
+    animation: vspin 2s linear infinite;
+}
+#spinner.enlarged {
+    transform: scale(1.5);
+}
+#spinner.enlarged.playing {
+    animation: vspin-large 2s linear infinite;
 }
 
 #lines {
@@ -184,7 +207,7 @@ footer {
 
 #overlay-label {
     font-size: 1.7vmin;
-    color: rgba(199, 190, 171, 0.55);
+    color: rgba(218, 208, 188, 0.55);
     margin: 0;
     padding: 0.8vmin 2vmin 0vmin 2vmin;
     text-transform: uppercase;
@@ -193,14 +216,14 @@ footer {
 
 #overlay-year {
     font-size: 1.7vmin;
-    color: rgba(199, 190, 171, 0.55);
+    color: rgba(218, 208, 188, 0.55);
     margin: 0;
     padding: 0.1vmin 2vmin 0 2vmin;
 }
 
 #overlay-runtime {
     font-size: 1.6vmin;
-    color: rgba(199, 190, 171, 0.35);
+    color: rgba(218, 208, 188, 0.55);
     margin: 0;
     padding: 0.5vmin 2vmin 0 2vmin;
     letter-spacing: 0.05em;
@@ -208,7 +231,7 @@ footer {
 
 .side-label {
     font-size: 1.4vmin;
-    color: rgba(199, 190, 171, 0.35);
+    color: rgba(218, 208, 188, 0.55);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin: 1.8vmin 0 0.6vmin 0;
@@ -228,19 +251,19 @@ footer {
 }
 #overlay-tracklist p {
     font-size: 1.6vmin;
-    color: rgba(220, 211, 193, 0.65);
+    color: rgba(218, 208, 188, 0.55);
     margin: 0;
     font-style: italic;
 }
 #overlay-tracklist p span {
-    color: rgba(220, 211, 193, 0.65);
+    color: rgba(218, 208, 188, 0.55);
     margin-right: 1vmin;
 }
 
 #overlay-lyrics {
     display: none;
     font-size: 1.5vmin;
-    color: rgba(179, 174, 165, 0.55);
+    color: rgba(206, 201, 191, 0.55);
     font-style: italic;
     white-space: pre-line;
     text-align: center;
@@ -282,25 +305,6 @@ footer {
 
 
 
-/* spinning disk for both overlay and regular view */
-@keyframes vspin {
-    from { transform: scale(1) rotate(0deg); }
-    to { transform: scale(1) rotate(360deg); }
-}
-@keyframes vspin-large {
-    from { transform: scale(1.5) rotate(0deg); }
-    to { transform: scale(1.5) rotate(360deg); }
-}
-#spinner.playing {
-    animation: vspin 2s linear infinite;
-}
-#spinner.enlarged {
-    transform: scale(1.5);
-}
-#spinner.enlarged.playing {
-    animation: vspin-large 2s linear infinite;
-}
-
 
 @media (max-width: 700px) {
     .vinyls {
@@ -312,11 +316,14 @@ footer {
     }
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
-        padding-left: 40%;
-        padding-right: 2vmax;
+        padding-right: 40%;
+        padding-left: 2vmax;
     }
     .cover {
         width: 15vmax;
+    }
+    .albums{
+        right: 4vmin;
     }
 }
 

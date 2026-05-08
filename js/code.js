@@ -8,7 +8,8 @@ const overlayRuntime = document.getElementById('overlay-runtime');
 const tracklist = document.getElementById('overlay-tracklist');
 const currentsong = document.getElementById('currentsong');
 const spinner = document.getElementById('spinner');
-const player = document.getElementById('player'); /* record player image */
+const player = document.getElementById('player');
+const arm = document.getElementById('arm'); /* record player arm image */
 const audio = document.getElementById('overlay-audio');
 audio.volume = 0.3;
 
@@ -45,10 +46,11 @@ function showLyrics(trackName) {
 
 /* switch player image to show arm down (playing) or up (stopped) */
 function setPlayerImage(playing) {
-    if (!player) return;
-    player.src = playing
-        ? 'assets/lejátszó tele játszik.png'  /* arm down = playing */
-        : 'assets/lejátszó tele.png';          /* arm up = stopped */
+    if (!arm) return;
+    const target = playing ? 'assets/kar rajta v2.png' : 'assets/kar oldalt.png';
+    if (!arm.src.includes(playing ? 'kar rajta v2' : 'kar oldalt')) {
+        arm.src = target;
+    }
 }
 
 /* highlight the active track in the tracklist with guard for side names*/
@@ -97,6 +99,7 @@ document.querySelectorAll('.cover').forEach(cover => {
         const otherside = cover.dataset.otherside || `assets/otherside/${filename}`;
         const albumTitle = cover.dataset.title;
 
+        // cover click — open overlay
         spinner.classList.add('enlarged');
 
         if (albumTitle === currentAlbumTitle) {
@@ -196,6 +199,7 @@ overlay.addEventListener('click', () => {
     setPlayerImage(!audio.paused); /* arm down if still playing, up if paused */
     overlay.style.display = 'none';
     spinner.style.zIndex = 9999;
+    // cover click — open overlay
     spinner.classList.remove('enlarged');
 });
 
