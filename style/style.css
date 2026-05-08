@@ -328,6 +328,17 @@ footer {
     .html{
         overflow-x: hidden;
     }
+
+    .vinyls.compact #albums {
+        left: auto;
+        right: 2vmin;
+        top: 22vmin;
+        width: 30vw;
+        text-align: right;
+    }
+    .vinyls.compact #albums a {
+        font-size: 2.8vmin;
+    }
 }
 
 @media (min-width: 701px) and (max-width: 900px) {
