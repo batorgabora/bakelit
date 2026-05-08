@@ -325,6 +325,9 @@ footer {
     .albums{
         right: 4vmin;
     }
+    .html{
+        overflow-x: hidden;
+    }
 }
 
 @media (min-width: 701px) and (max-width: 900px) {
