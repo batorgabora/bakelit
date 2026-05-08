@@ -316,7 +316,7 @@ footer {
     }
     .vinyls.compact {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 40%;
+        padding-right: 25%;
         padding-left: 2vmax;
     }
     .cover {
