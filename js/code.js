@@ -47,8 +47,8 @@ function showLyrics(trackName) {
 /* switch player image to show arm down (playing) or up (stopped) */
 function setPlayerImage(playing) {
     if (!arm) return;
-    const target = playing ? 'assets/kar rajta v2.png' : 'assets/kar oldalt.png';
-    if (!arm.src.includes(playing ? 'kar rajta v2' : 'kar oldalt')) {
+    const target = playing ? 'assets/kar rajta.png' : 'assets/kar oldalt.png';
+    if (!arm.src.includes(playing ? 'kar rajta' : 'kar oldalt')) {
         arm.src = target;
     }
 }
