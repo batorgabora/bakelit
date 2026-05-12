@@ -36,6 +36,24 @@ footer {
 #arm{
     z-index: 99999;
 }
+#headphone{
+    position: fixed;
+    width: calc(var(--vinyl-size) * 1.8);
+    height: auto;
+    top: 0.0vmin;
+    right: 16.4vmin;
+    z-index: 100;
+    pointer-events: none;
+}
+#grass{
+    position: absolute;
+    width: calc(var(--vinyl-size) * 1.8);
+    height: auto;
+    top: 0.0vmin;
+    right: 16.4vmin;
+    z-index: 99;
+    pointer-events: none;
+}
 
 
 #currentsong{
