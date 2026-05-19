@@ -441,7 +441,7 @@ footer {
 
 
 @media (max-width: 700px) {
-    #player, #arm, #headphone, #grass {
+    #spinner, #player, #arm, #headphone, #grass {
         transform: scale(1.5);
         transform-origin: top right; /* scales towards the bottom left */
     }
