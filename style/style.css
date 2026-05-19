@@ -5,7 +5,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
   overflow-x: hidden;
   padding: 0;
-  color: #B3AEA5;
+  color: var(--text-main); /* #B3AEA5 */
 }
 footer {
     text-align: left;
@@ -18,10 +18,12 @@ footer {
     width: 100%;
 }
 
-:root { 
+:root {
     --cover-size: 10vmax;
     --vinyl-size: 14vmin;
     --lines-size: 3vmax;
+    --muted-gold: rgba(218, 208, 188, 0.55);
+    --text-main: #B3AEA5;
 }
 
 #player, #arm {
@@ -33,57 +35,52 @@ footer {
     z-index: 9999;
     pointer-events: none;
 }
-#arm{
+#arm {
     z-index: 99999;
 }
-#headphone{
-    position: fixed;
+#headphone, #grass {
     width: calc(var(--vinyl-size) * 1.8);
     height: auto;
     top: 0.0vmin;
     right: 16.4vmin;
-    z-index: 100;
     pointer-events: none;
 }
-#grass{
-    position: absolute;
-    width: calc(var(--vinyl-size) * 1.8);
-    height: auto;
-    top: 0.0vmin;
-    right: 16.4vmin;
-    z-index: 99;
+#headphone { position: fixed; z-index: 100; }
+#grass     { position: absolute; z-index: 99; }
+
+#player, #arm, #headphone, #grass {
     pointer-events: none;
 }
 
 
-#currentsong{
+#currentsong {
     position: fixed;
     transform: translateX(100%) rotate(90deg);
     transform-origin: left;
-    right: 2vmin; /* change this value to match needs */
-    top: 24vmin; /* change this value to match needs */
+    right: 2vmin;
+    top: 24vmin;
     font-size: 80%;
     color: rgba(199, 190, 171, 0.55);
 }
 
-.smudges{
+.smudges {
     border: none;
     position: fixed;
     opacity: 0.3;
 }
-#green{
+#green {
     width: 70vmax;
     top: -24vmax;
     left: -30vmax;
     transform: rotate(30deg);
 }
-#red{
+#red {
     width: 75vmax;
     bottom: -24vmax;
     right: -50vmax;
     transform: rotate(100deg);
 }
-#beige{
+#beige {
     width: 40vmax;
     bottom: -8vmax;
     left: -28vmax;
@@ -91,14 +88,14 @@ footer {
 }
 
 .titulum {
-  width: 170%;
-  height: auto;
-  text-align: center;
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+    width: 170%;
+    height: auto;
+    text-align: center;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .titulum img {
     width: 9vmax;
@@ -106,10 +103,10 @@ footer {
 
 
 .vinyls {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2.5vmax;
-  padding: 23vmin 14vmin 14vmin 10vmin;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2.5vmax;
+    padding: 23vmin 14vmin 14vmin 14vmin;
 }
 .vinyls.compact {
     grid-template-columns: repeat(4, 1fr);
@@ -117,16 +114,16 @@ footer {
 }
 
 .cover {
-  width: var(--cover-size);
-  height: auto;
-  z-index: 99;
-  filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
-  cursor: pointer;
+    width: var(--cover-size);
+    height: auto;
+    z-index: 99;
+    filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
+    cursor: pointer;
 }
 
 
 /* two buttons i made :)) */
-.buttons{
+.buttons {
     background: transparent;
     border: none;
     padding: 0;
@@ -155,8 +152,8 @@ footer {
 
 /* spinning disk for both overlay and regular view */
 @keyframes vspin {
-    from { transform: scale(1) rotate(0deg); }
-    to { transform: scale(1) rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 @keyframes vspin-large {
     from { transform: scale(1.5) rotate(0deg); }
@@ -183,7 +180,7 @@ footer {
 }
 
 
-/* overlay view as you on an album */
+/* overlay view when you click on an album */
 #album-overlay {
     display: none;
     flex-direction: column;
@@ -210,7 +207,7 @@ footer {
 
 #overlay-title {
     font-size: 3.1vmin;
-    color: #B3AEA5;
+    color: var(--text-main); /* #B3AEA5 */
     margin: 0;
     font-style: italic;
     padding: 0vmin 2vmin 0vmin 2vmin;
@@ -223,25 +220,23 @@ footer {
     padding: 0.5vmin 2vmin 0 2vmin;
 }
 
-#overlay-label {
+#overlay-label, #overlay-year {
     font-size: 1.7vmin;
-    color: rgba(218, 208, 188, 0.55);
+    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
     margin: 0;
+}
+#overlay-label {
     padding: 0.8vmin 2vmin 0vmin 2vmin;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
-
 #overlay-year {
-    font-size: 1.7vmin;
-    color: rgba(218, 208, 188, 0.55);
-    margin: 0;
     padding: 0.1vmin 2vmin 0 2vmin;
 }
 
 #overlay-runtime {
     font-size: 1.6vmin;
-    color: rgba(218, 208, 188, 0.55);
+    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
     margin: 0;
     padding: 0.5vmin 2vmin 0 2vmin;
     letter-spacing: 0.05em;
@@ -249,7 +244,7 @@ footer {
 
 .side-label {
     font-size: 1.4vmin;
-    color: rgba(218, 208, 188, 0.55);
+    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin: 1.8vmin 0 0.6vmin 0;
@@ -269,12 +264,12 @@ footer {
 }
 #overlay-tracklist p {
     font-size: 1.6vmin;
-    color: rgba(218, 208, 188, 0.55);
+    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
     margin: 0;
     font-style: italic;
 }
 #overlay-tracklist p span {
-    color: rgba(218, 208, 188, 0.55);
+    /* color inherited from parent — rgba(218, 208, 188, 0.55) */
     margin-right: 1vmin;
 }
 
@@ -304,7 +299,7 @@ footer {
 }
 
 #albums a {
-    color: #B3AEA5;
+    color: var(--text-main); /* #B3AEA5 */
     text-decoration: none;
     font-size: 1.8vmin;
     font-style: italic;
@@ -322,37 +317,35 @@ footer {
 }
 
 
-
-
 @media (max-width: 700px) {
+    #player, #arm, #headphone, #grass {
+        transform: scale(1.5);
+        transform-origin: top right; /* scales towards the bottom left */
+    }
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
-        padding: 20vmin 7vmin 7vmin 5vmin;
+        padding: 40vmin 7vmin 7vmin 5vmin;
         gap: 7vmin;
         align-items: center;
         justify-items: center;
     }
-    .vinyls.compact {
-        grid-template-columns: repeat(1, 1fr);
-        padding-right: 25%;
-        padding-left: 2vmax;
-    }
     .cover {
         width: 15vmax;
     }
-    .albums{
-        right: 4vmin;
-    }
-    .html{
+    html {
         overflow-x: hidden;
     }
-
+    .vinyls.compact {
+        grid-template-columns: repeat(1, 1fr);
+        padding-left: 50vw;
+        padding-right: 2vmin;
+    }
     .vinyls.compact #albums {
-        left: auto;
-        right: 2vmin;
+        left: 2vmin;
+        right: auto;
         top: 22vmin;
-        width: 30vw;
-        text-align: right;
+        width: 46vw;
+        text-align: left;
     }
     .vinyls.compact #albums a {
         font-size: 2.8vmin;
