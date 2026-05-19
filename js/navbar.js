@@ -30,19 +30,3 @@ lines.addEventListener('click', () => {
     navbar.style.display = isCompact ? 'flex' : 'none';
     albums.style.display = isCompact ? 'flex' : 'none'; /* explicitly sync albums */
 });
-
-/* space bar toggles play/pause */
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-        e.preventDefault();
-        if (audio.paused) {
-            audio.play();
-            spinner.classList.add('playing');
-            setPlayerImage(true);
-        } else {
-            audio.pause();
-            spinner.classList.remove('playing');
-            setPlayerImage(false);
-        }
-    }
-});

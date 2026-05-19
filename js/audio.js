@@ -48,9 +48,9 @@ function restoreHighlight() {
 }
 
 /* plays a specific track by index from the current album.
-   if the file is missing, skips to the next track automatically */
-function playTrack(index) {
-    if (index >= currentTracks.length) return;
+   if the file is missing, skips in the given direction automatically */
+function playTrack(index, direction = 1) {
+    if (index >= currentTracks.length || index < 0) return;
     const trackName = currentTracks[index];
     const paddedNum = String(index + 1).padStart(2, '0');
     const trackSrc = `assets/audio/${currentAlbumTitle}/${paddedNum} ${trackName}.flac`;
@@ -59,22 +59,58 @@ function playTrack(index) {
     audio.load();
     audio.play()
         .then(() => {
-            spinner.classList.add('playing'); /* start spinning when audio plays */
-            setPlayerImage(true);            /* arm down when playing */
-            restoreHighlight();              /* highlight current track in tracklist */
-            showLyrics(trackName);           /* show lyrics for this track */
+            spinner.classList.add('playing');
+            setPlayerImage(true);
+            restoreHighlight();
+            showLyrics(trackName);
             currentsong.textContent = trackName;
         })
         .catch(() => {
-            /* no file for this track, skip to next */
+            /* file missing — skip in the given direction */
             console.warn(`skipping track ${paddedNum} ${trackName}: not found`);
-            trackIndex++;
-            playTrack(trackIndex);
+            trackIndex += direction;
+            playTrack(trackIndex, direction);
         });
 }
 
 /* automatically advance to next track when current one ends */
 audio.onended = () => {
     trackIndex++;
-    playTrack(trackIndex);
+    playTrack(trackIndex, 1);
 };
+
+
+/* keyboard controls — space toggles play/pause,
+   arrows skip tracks or restart current */
+document.addEventListener('keydown', (e) => {
+
+    if (e.code === 'Space') {
+        e.preventDefault();
+        if (audio.paused) {
+            audio.play();
+            spinner.classList.add('playing');
+            setPlayerImage(true);
+        } else {
+            audio.pause();
+            spinner.classList.remove('playing');
+            setPlayerImage(false);
+        }
+    }
+
+    if (e.code === 'ArrowRight') {
+        e.preventDefault();
+        trackIndex++;
+        playTrack(trackIndex, 1);  /* skip forwards if missing */
+    }
+
+    if (e.code === 'ArrowLeft') {
+        e.preventDefault();
+        if (audio.currentTime > 3) {
+            audio.currentTime = 0;
+        } else {
+            trackIndex = Math.max(0, trackIndex - 1);
+            playTrack(trackIndex, -1); /* skip backwards if missing */
+        }
+    }
+
+});
