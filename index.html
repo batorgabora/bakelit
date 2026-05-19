@@ -29,14 +29,21 @@
     <img src="assets/smudge-beige.png" alt="" id="beige" class="smudges">
     
 
-
-    
-    <div id="albums">
-        <!-- filled by JS -->
-    </div>
-
     <div id="currentsong"></div>
 
+    <div id="navbar">
+        <p id="filter-label">filters</p>
+        <div id="albums"><!-- filled by JS --></div>
+        <div id="bands">
+            <p class="band-label">filter by artist</p>
+        </div>
+        <div id="years">
+            <p class="band-label">filter by year</p>
+        </div>
+        <div id="labels">
+            <p class="band-label">filter by label</p>
+        </div>
+    </div>
 
     <div class="vinyls">
         <img src="assets/covers/dark side of the moon.jpg" alt="" class="cover" data-title="the dark side of the moon" data-artist="pink floyd" data-label="harvest" data-year="1973" data-runtime="42:49" data-sides="side a:5,side b:5" data-tracks="speak to me, breathe, on the run, time, the great gig in the sky, money, us and them, any colour you like, brain damage, eclipse">
@@ -102,7 +109,7 @@
         <img src="assets/covers/queen greatest hits.jpg" alt="" class="cover" data-title="greatest hits" data-artist="queen" data-label="emi" data-year="1981" data-runtime="51:27" data-sides="side a:5,side b:5,side c:4,side d:3" data-tracks="bohemian rhapsody, another one bites the dust, killer queen, fat bottomed girls, bicycle race, you're my best friend, don't stop me now, save me, crazy little thing called love, somebody to love, now i'm here, good old-fashioned lover boy, play the game, flash, seven seas of rhye, we will rock you, we are the champions">
         <img src="assets/covers/abba greatest hits.jpg" alt="" class="cover" data-title="greatest hits" data-artist="abba" data-label="epic" data-year="1975" data-runtime="~39:00" data-sides="side a:7,side b:7" data-tracks="sos, he is your brother, ring ring, hasta manana, nina pretty ballerina, honey honey, so long, i do i do i do i do i do, people need love, bang-a-boomerang, another town another train, mamma mia, dance (while the music still goes on), waterloo">
         <img src="assets/covers/karácsonyi album.jpg" alt="" class="cover" data-title="karácsonyi album" data-artist="bojtorján" data-label="favorit" data-year="1984" data-runtime="~47:00" data-sides="side a:11,side b:10" data-tracks="adeste fideles, arckép, karácsony este, téli alkony, éjfél előtt, a mai nap, kis karácsonyi ének, mit mondanál?, nől a dér álom jár, o pastor eterne, procedantem sponsum, laude digna, csengőszó, december, téli ünnep, ballett, szép a fenyő, a fenyőfa, száncsengő, waltz, karácsony iii.">
-        <img src="assets/covers/brother where you bound.jpg" alt="" class="cover" data-title="brother where you boundm" data-artist="supertramp" data-label="a&m records" data-year="1985" data-runtime="~42:00" data-sides="side a:4,side b:2" data-tracks="cannomnball, still in love, no inbetween, better days, brother where you bound (guitar: scott gorham - guitar [solos]: david gilmour), ever open door">
+        <img src="assets/covers/brother where you bound.jpg" alt="" class="cover" data-title="brother where you bound" data-artist="supertramp" data-label="a&m records" data-year="1985" data-runtime="~42:00" data-sides="side a:4,side b:2" data-tracks="cannomnball, still in love, no inbetween, better days, brother where you bound (guitar: scott gorham - guitar [solos]: david gilmour), ever open door">
     </div>
 
 
@@ -121,7 +128,12 @@
         </div>
     </div>
 
-    <script src="js/code.js" defer></script>
+    <script src="js/declarations.js" defer></script>
+    <script src="js/audio.js" defer></script>
+    <script src="js/overlay.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/filters.js" defer></script>
+
 </body>
 <footer>kései kapitalizmus &#174;</footer>
 </html>

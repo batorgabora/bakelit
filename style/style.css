@@ -8,13 +8,13 @@ body {
   color: var(--text-main); /* #B3AEA5 */
 }
 footer {
-    text-align: left;
+    text-align: right;
     font-size: 1vmin;
     color: rgba(188, 183, 175, 0.3);
     padding: 4vmin 0 0 2vmin;
     position: relative;
     bottom: 0;
-    left: 0;
+    right: 7vmin;
     width: 100%;
 }
 
@@ -288,16 +288,31 @@ footer {
 
 
 /* navbar element as link to album overlay views */
-#albums {
+#navbar {
     display: none;
     flex-direction: column;
-    gap: 0.7vmax;
-    position: absolute;
+    position: fixed;
     left: 4vmax;
-    top: 12vmax;
+    top: 0;
+    padding-top: 12.5vmax;
+    padding-bottom: 4vmax;
     width: 22vmax;
+    height: 100vh;                        /* fixed full height */
+    max-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;               /* padding counts inside the height */
+    scrollbar-width: none;
+}
+#navbar::-webkit-scrollbar {
+    display: none;
 }
 
+/* albums */
+#albums {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7vmax;
+}
 #albums a {
     color: var(--text-main); /* #B3AEA5 */
     text-decoration: none;
@@ -306,11 +321,119 @@ footer {
     cursor: pointer;
     transition: color 0.2s;
 }
-
 #albums a:hover {
     color: white;
     text-decoration: underline;
 }
+
+/* filter label when filtering */
+#filter-label {
+    display: none;
+    font-size: 2.2vmin;
+    color: var(--muted-gold); /* was rgba(179, 174, 165, 0.35) */
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0 0 1vmax 0;
+    font-style: normal;
+}
+#filter-active {
+    display: block;
+    margin: 0.8vmax 0 0.4vmax 0;
+    font-size: 1.6vmin;
+    color: var(--muted-gold); /* was var(--text-main) */
+    text-transform: none;
+    letter-spacing: 0;
+    font-style: italic;
+}
+.filter-all {
+    margin-bottom: 0.5vmax; /* matches the gap on #bands, #years, #labels */
+}
+
+
+/* band filter nav — sits below the album list in compact view */
+/* make the artist name in the overlay feel clickable */
+#bands {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vmax;
+    margin-top: 2vmax;
+    padding-top: 1.5vmax;
+    border-top: 1px solid rgba(179, 174, 165, 0.15);
+}
+.band-label {
+    font-size: 1.4vmin;
+    color: rgba(179, 174, 165, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0 0 0 0;
+    font-style: normal;
+}
+#bands a {
+    color: rgba(179, 174, 165, 0.6);
+    text-decoration: none;
+    font-size: 1.8vmin;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#bands a:hover { color: white; }
+#bands a.active {
+    color: var(--text-main);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+}
+
+/* years */
+#years {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vmax;
+    margin-top: 2vmax;
+    padding-top: 1.5vmax;
+    border-top: 1px solid rgba(179, 174, 165, 0.15);
+}
+#years a {
+    color: rgba(179, 174, 165, 0.6);
+    text-decoration: none;
+    font-size: 1.8vmin;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#years a:hover { color: white; }
+#years a.active {
+    color: var(--text-main);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+}
+
+
+/* labels */
+#labels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vmax;
+    margin-top: 2vmax;
+    padding-top: 1.5vmax;
+    border-top: 1px solid rgba(179, 174, 165, 0.15);
+}
+#labels a {
+    color: rgba(179, 174, 165, 0.6);
+    text-decoration: none;
+    font-size: 1.8vmin;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#labels a:hover { color: white; }
+#labels a.active {
+    color: var(--text-main);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+}
+
+
+
 
 .vinyls.compact #albums {
     display: flex;
@@ -350,6 +473,12 @@ footer {
     .vinyls.compact #albums a {
         font-size: 2.8vmin;
     }
+    .band-label { font-size: 2.4vmin; }
+    #filter-label { font-size: 2.4vmin; }
+    #filter-active { font-size: 2.6vmin; }
+    #bands a    { font-size: 2.8vmin; }
+    #years a { font-size: 2.8vmin; }
+    #labels a { font-size: 2.8vmin; }
 }
 
 @media (min-width: 701px) and (max-width: 900px) {
