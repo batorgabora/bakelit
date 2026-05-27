@@ -44,9 +44,8 @@ footer {
     top: 0.0vmin;
     right: 16.4vmin;
     pointer-events: none;
+    position: absolute; z-index: 99; 
 }
-#headphone { position: fixed; z-index: 100; }
-#grass     { position: absolute; z-index: 99; }
 
 #player, #arm, #headphone, #grass {
     pointer-events: none;
