@@ -3,6 +3,13 @@
    loaded first so all other files can access these
    ============================================================ */
 
+/* restore saved theme on load */
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    document.documentElement.classList.add('light-mode');
+}
+
+
 const overlay      = document.getElementById('album-overlay');
 const overlayImg   = document.getElementById('overlay-cover');
 const overlayTitle = document.getElementById('overlay-title');
@@ -34,3 +41,20 @@ let currentLyrics = {};       /* lyrics keyed by track name */
 let activeArtist = null;      /* currently selected artist filter, null = show all */
 let activeYear   = null;      /* currently selected year filter, null = show all */
 let activeLabel = null;       /* currently selected label filter, null = show all */
+
+
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyI') {
+        const isLight = document.body.classList.toggle('light-mode');
+        document.documentElement.classList.toggle('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        restoreHighlight();
+    }
+});
+document.getElementById('invert').addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+      document.documentElement.classList.toggle('light-mode');
+     localStorage.setItem('theme', isLight ? 'light' : 'dark');
+     restoreHighlight(); /* update tracklist colors immediately */
+});

@@ -43,8 +43,8 @@ function restoreHighlight() {
     const isLight = document.body.classList.contains('light-mode');
     document.querySelectorAll('#overlay-tracklist p:not(.side-label)').forEach((p, i) => {
         p.style.color = i === trackIndex
-            ? (isLight ? 'rgba(40, 35, 30, 0.9)' : 'rgba(226, 221, 209, 0.9)')
-            : (isLight ? 'rgba(40, 35, 30, 0.5)' : 'rgba(201, 199, 195, 0.5)');
+            ? (isLight ? 'rgba(0, 0, 0, 0.9)' : 'rgba(236, 231, 219, 0.9)')
+            : (isLight ? 'rgba(33, 31, 25, 0.5)' : 'rgba(214, 211, 205, 0.5)');
     });
 }
 
