@@ -42,8 +42,8 @@ function setPlayerImage(playing) {
 function restoreHighlight() {
     document.querySelectorAll('#overlay-tracklist p:not(.side-label)').forEach((p, i) => {
         p.style.color = i === trackIndex
-            ? 'rgba(179, 174, 165, 0.9)'
-            : 'rgba(179, 174, 165, 0.5)';
+            ? 'rgba(226, 221, 209, 0.9)'
+            : 'rgba(201, 199, 195, 0.5)';
     });
 }
 
@@ -53,7 +53,8 @@ function playTrack(index, direction = 1) {
     if (index >= currentTracks.length || index < 0) return;
     const trackName = currentTracks[index];
     const paddedNum = String(index + 1).padStart(2, '0');
-    const trackSrc = `assets/audio/${currentAlbumTitle}/${paddedNum} ${trackName}.flac`;
+    //const trackSrc = `assets/audio/${currentAlbumTitle}/${paddedNum} ${trackName}.flac`;
+    const trackSrc = `assets/audio/${encodeURIComponent(currentAlbumTitle)}/${paddedNum} ${encodeURIComponent(trackName)}.flac`;
 
     audio.src = trackSrc;
     audio.load();

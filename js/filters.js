@@ -12,7 +12,8 @@ function updateAlbumList() {
     albums.innerHTML = '';
 
     document.querySelectorAll('.cover').forEach(cover => {
-        const artistMatch = !activeArtist || cover.dataset.artist === activeArtist;
+        const coverArtists = cover.dataset.artist.split('&').map(a => a.trim());
+        const artistMatch = !activeArtist || coverArtists.includes(activeArtist);
         const yearMatch   = !activeYear   || cover.dataset.year   === activeYear;
         const labelMatch  = !activeLabel  || cover.dataset.label  === activeLabel;
 
@@ -24,7 +25,7 @@ function updateAlbumList() {
         }
     });
 
-    albums.style.display = 'flex'; /* always visible in navbar */
+    albums.style.display = 'flex';
 }
 
 /* show or hide the "filters" header and active filter summary */
@@ -47,8 +48,12 @@ function updateFilterLabel() {
 
 /* apply all three active filters to covers simultaneously */
 function applyAllFilters() {
+    const scrollY = window.scrollY; /* save position before layout shifts */
+
+    /* split the cover's artist by & and check if activeArtist is among them */
     document.querySelectorAll('.cover').forEach(cover => {
-        const artistMatch = !activeArtist || cover.dataset.artist === activeArtist;
+        const coverArtists = cover.dataset.artist.split('&').map(a => a.trim());
+        const artistMatch = !activeArtist || coverArtists.includes(activeArtist);
         const yearMatch   = !activeYear   || cover.dataset.year   === activeYear;
         const labelMatch  = !activeLabel  || cover.dataset.label  === activeLabel;
         cover.style.display = artistMatch && yearMatch && labelMatch ? '' : 'none';
@@ -56,6 +61,53 @@ function applyAllFilters() {
 
     updateAlbumList();
     updateFilterLabel();
+
+    updateFilterHighlights(); /* highlight valid options in other filters */
+
+    window.scrollTo({ top: scrollY, behavior: 'instant' }); /* restore position */
+}
+
+
+/* after filtering, dim options in other filters that would yield no results.
+   only dims — never hides — so the full list stays readable */
+function updateFilterHighlights() {
+    /* collect values from currently visible covers only */
+    const visibleCovers = [...document.querySelectorAll('.cover')]
+        .filter(cover => cover.style.display !== 'none');
+
+    const validArtists = new Set(
+        visibleCovers.flatMap(cover =>
+            cover.dataset.artist.split('&').map(a => a.trim())
+        )
+    );
+    const validYears  = new Set(visibleCovers.map(cover => cover.dataset.year));
+    const validLabels = new Set(visibleCovers.map(cover => cover.dataset.label));
+
+    /* dim bands that have no visible covers */
+    document.querySelectorAll('#bands a').forEach(a => {
+        if (!a.dataset.band) return; /* skip "all" */
+        a.style.opacity = validArtists.has(a.dataset.band) ? '1' : '0.5';
+    });
+
+    /* dim years that have no visible covers */
+    document.querySelectorAll('#years a').forEach(a => {
+        if (a.dataset.year === '') return; /* skip "all" */
+        a.style.opacity = validYears.has(a.dataset.year) ? '1' : '0.5';
+    });
+
+    /* dim labels that have no visible covers */
+    document.querySelectorAll('#labels a').forEach(a => {
+        if (a.dataset.label === '') return; /* skip "all" */
+        a.style.opacity = validLabels.has(a.dataset.label) ? '1' : '0.5';
+    });
+}
+
+
+/* reset all highlights back to full opacity */
+function clearFilterHighlights() {
+    document.querySelectorAll('#bands a, #years a, #labels a').forEach(a => {
+        a.style.opacity = '1';
+    });
 }
 
 
@@ -67,14 +119,17 @@ function applyAllFilters() {
 function buildBandFilter() {
     const bandsContainer = document.getElementById('bands');
 
+    /* split artists by & to get individual names from collaborative credits */
     const artists = [
         ...new Set(
             [...document.querySelectorAll('.cover')]
-                .map(cover => cover.dataset.artist)
+                .flatMap(cover =>
+                    cover.dataset.artist.split('&').map(a => a.trim())
+                )
         )
     ].sort();
 
-    /* "all" resets just the artist filter */
+    /* rest stays the same */
     const allLink = document.createElement('a');
     allLink.textContent = 'all';
     allLink.dataset.band = '';
@@ -88,8 +143,8 @@ function buildBandFilter() {
         bandsContainer.appendChild(a);
     });
 
-    /* single delegated click handler */
     bandsContainer.addEventListener('click', e => {
+        e.preventDefault(); /* stop any default anchor scroll behaviour */
         const link = e.target.closest('a');
         if (!link) return;
         applyBandFilter(link.dataset.band);
@@ -139,6 +194,7 @@ function buildYearFilter() {
     });
 
     yearsContainer.addEventListener('click', e => {
+        e.preventDefault(); /* stop any default anchor scroll behaviour */
         const link = e.target.closest('a');
         if (!link) return;
         applyYearFilter(link.dataset.year);
@@ -187,6 +243,7 @@ function buildLabelFilter() {
     });
 
     labelsContainer.addEventListener('click', e => {
+        e.preventDefault(); /* stop any default anchor scroll behaviour */
         const link = e.target.closest('a');
         if (!link) return;
         applyLabelFilter(link.dataset.label);
@@ -238,6 +295,7 @@ document.addEventListener('click', e => {
 
         /* hide filter label */
         document.getElementById('filter-label').style.display = 'none';
+        clearFilterHighlights(); /* restore full opacity on reset */
 
         /* restore full album list */
         albums.innerHTML = '';

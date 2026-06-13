@@ -1,9 +1,10 @@
 html, body {
-  background-color: #131414;
+    background-color: #131414;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 body {
   font-family: 'Courier New', Courier, monospace;
-  overflow-x: hidden;
   padding: 0;
   color: var(--text-main); /* #B3AEA5 */
 }
@@ -22,8 +23,8 @@ footer {
     --cover-size: 10vmax;
     --vinyl-size: 14vmin;
     --lines-size: 3vmax;
-    --muted-gold: rgba(218, 208, 188, 0.55);
-    --text-main: #B3AEA5;
+    --muted-gold: rgba(239, 225, 196, 0.55);
+    --text-main: #cbc2b3;
 }
 
 #player, #arm {
@@ -195,7 +196,7 @@ footer {
     inset: 0;
     overflow-y: auto;
 
-    background-color: rgba(0, 0, 0, 0.92);
+    background-color: rgba(0, 0, 0, 0.9);
     z-index: 999999;
     cursor: pointer;
 }
@@ -233,14 +234,22 @@ footer {
     letter-spacing: 0.1em;
 }
 #overlay-year {
-    padding: 0.1vmin 2vmin 0 2vmin;
+    padding: 0.3vmin 2vmin 0 2vmin;
+}
+
+#overlay-artist:hover,
+#overlay-year:hover,
+#overlay-label:hover {
+    color:  rgb(184, 180, 180);
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 #overlay-runtime {
     font-size: 1.6vmin;
     color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
     margin: 0;
-    padding: 0.5vmin 2vmin 0 2vmin;
+    padding: 0.6vmin 2vmin 0 2vmin;
     letter-spacing: 0.05em;
 }
 
@@ -266,7 +275,7 @@ footer {
 }
 #overlay-tracklist p {
     font-size: 1.6vmin;
-    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
+    color: var(--text-main);
     margin: 0;
     font-style: italic;
 }
@@ -278,7 +287,7 @@ footer {
 #overlay-lyrics {
     display: none;
     font-size: 1.5vmin;
-    color: rgba(206, 201, 191, 0.55);
+    color: rgba(233, 223, 203, 0.55);
     font-style: italic;
     white-space: pre-line;
     text-align: center;
@@ -352,6 +361,16 @@ footer {
 }
 
 
+.filter-label {
+    font-size: 1.5vmin;
+    color: rgba(243, 233, 215, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0 0 0 0;
+    padding: 0 0 0.5vmax 0;
+    font-style: normal;
+}
+
 /* band filter nav — sits below the album list in compact view */
 /* make the artist name in the overlay feel clickable */
 #bands {
@@ -361,14 +380,6 @@ footer {
     margin-top: 2vmax;
     padding-top: 1.5vmax;
     border-top: 1px solid rgba(179, 174, 165, 0.15);
-}
-.band-label {
-    font-size: 1.4vmin;
-    color: rgba(179, 174, 165, 0.35);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin: 0 0 0 0;
-    font-style: normal;
 }
 #bands a {
     color: rgba(179, 174, 165, 0.6);
@@ -443,9 +454,12 @@ footer {
 
 
 @media (max-width: 700px) {
-    #spinner, #player, #arm, #headphone, #grass {
+    #player, #arm, #headphone, #grass {
         transform: scale(1.5);
-        transform-origin: top right; /* scales towards the bottom left */
+        transform-origin: top right;
+    }
+    #spinner {
+        transform-origin: center; /* explicitly keep spinner centred */
     }
     .vinyls {
         grid-template-columns: repeat(2, 1fr);
@@ -475,7 +489,7 @@ footer {
     .vinyls.compact #albums a {
         font-size: 2.8vmin;
     }
-    .band-label { font-size: 2.4vmin; }
+    .filter-label { font-size: 2.4vmin; }
     #filter-label { font-size: 2.4vmin; }
     #filter-active { font-size: 2.6vmin; }
     #bands a    { font-size: 2.8vmin; }
