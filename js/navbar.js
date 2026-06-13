@@ -33,3 +33,17 @@ lines.addEventListener('click', () => {
     navbar.style.display = isCompact ? 'flex' : 'none';
     albums.style.display = isCompact ? 'flex' : 'none'; /* explicitly sync albums */
 });
+
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyI') {
+        document.body.classList.toggle('light-mode');
+        document.documentElement.classList.toggle('light-mode');
+        restoreHighlight(); /* update tracklist colors immediately */
+    }
+});
+document.getElementById('invert').addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    document.documentElement.classList.toggle('light-mode');
+    restoreHighlight(); /* update tracklist colors immediately */
+});

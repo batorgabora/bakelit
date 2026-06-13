@@ -40,10 +40,11 @@ function setPlayerImage(playing) {
 /* highlight the active track in the tracklist.
    guards against side-label paragraphs which aren't tracks */
 function restoreHighlight() {
+    const isLight = document.body.classList.contains('light-mode');
     document.querySelectorAll('#overlay-tracklist p:not(.side-label)').forEach((p, i) => {
         p.style.color = i === trackIndex
-            ? 'rgba(226, 221, 209, 0.9)'
-            : 'rgba(201, 199, 195, 0.5)';
+            ? (isLight ? 'rgba(40, 35, 30, 0.9)' : 'rgba(226, 221, 209, 0.9)')
+            : (isLight ? 'rgba(40, 35, 30, 0.5)' : 'rgba(201, 199, 195, 0.5)');
     });
 }
 

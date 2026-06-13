@@ -459,6 +459,7 @@ footer {
         transform-origin: top right;
     }
     #spinner {
+        transform: scale(1.5);
         transform-origin: center; /* explicitly keep spinner centred */
     }
     .vinyls {
@@ -521,4 +522,71 @@ footer {
     .vinyls.compact {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+
+
+
+body.light-mode {
+    --text-main: #2a2520;
+    --muted-gold: rgba(80, 65, 40, 0.75);
+    background-color: #aba7a1;
+}
+
+html.light-mode,
+body.light-mode {
+    background-color: #aba7a1;
+}
+
+body.light-mode #album-overlay {
+    background-color: rgba(220, 215, 206, 0.97);
+}
+
+body.light-mode #bands a,
+body.light-mode #years a,
+body.light-mode #labels a {
+    color: rgba(60, 50, 40, 0.6);
+}
+
+body.light-mode #bands a:hover,
+body.light-mode #years a:hover,
+body.light-mode #labels a:hover {
+    color: #1a1007;
+}
+
+body.light-mode #overlay-title {
+    color: #2a2520;
+}
+
+body.light-mode #overlay-artist {
+    color: rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode #overlay-tracklist p {
+    color: rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode #overlay-lyrics {
+    color: rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode .side-label {
+    color: rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode #overlay-runtime {
+    color:rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode #currentsong {
+    color: rgba(27, 24, 20, 0.75);
+}
+
+body.light-mode #albums a {
+    color: #2a2520;
+}
+
+body.light-mode #filter-label,
+body.light-mode .filter-label {
+    color: rgba(27, 24, 20, 0.75);
 }
