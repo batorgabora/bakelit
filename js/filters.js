@@ -20,7 +20,10 @@ function updateAlbumList() {
         if (artistMatch && yearMatch && labelMatch) {
             const link = document.createElement('a');
             link.textContent = cover.dataset.title;
-            link.addEventListener('click', () => cover.click());
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                cover.click();
+            });
             albums.appendChild(link);
         }
     });

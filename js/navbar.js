@@ -7,7 +7,10 @@
 document.querySelectorAll('.cover').forEach(cover => {
     const link = document.createElement('a');
     link.textContent = cover.dataset.title;
-    link.addEventListener('click', () => cover.click());
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); /* add this */
+        cover.click();
+    });
     albums.appendChild(link);
 });
 
