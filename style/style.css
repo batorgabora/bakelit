@@ -517,7 +517,7 @@ body.light-mode .buttons {
     }
     .cover { width: 15vmax; }
 
-    html { 
+    html, body { 
         overflow-x: hidden;
 
         font-size: 150%;
