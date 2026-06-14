@@ -1,5 +1,8 @@
 @media (max-width: 700px) {
-    .titulum { top: 5vmin; }
+    .titulum { 
+        top: 10vmin; 
+        scale: 1.5;
+    }
 
     #player, #arm, #headphone, #grass {
         transform: scale(1.5);
