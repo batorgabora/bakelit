@@ -2,8 +2,8 @@ html, body {
     background-color: var(--bg);
     overflow-x: hidden;
     position: relative;
-
     font-size: 130%;
+    min-height: 100%;
 }
 body {
     font-family: 'Courier New', Courier, monospace;
@@ -486,7 +486,8 @@ body.light-mode .buttons {
 @media (max-width: 700px) {
     .titulum { 
         top: 10vmin; 
-        scale: 1.5;
+        left: 50%;
+        transform: translateX(-50%)  scale(1.5);
     }
 
     #player, #arm, #headphone, #grass {
@@ -496,8 +497,8 @@ body.light-mode .buttons {
     #spinner {
         transform: scale(1.5);
         transform-origin: top right; /* match the player scale anchor */
-        top: 5.0vmin;
-        right: 3.9vmin;
+        /* top: 5.0vmin;
+        right: 3.9vmin; */
     }
     #spinner.playing {
         animation: vspin 2s linear infinite;
