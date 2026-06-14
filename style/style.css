@@ -12,7 +12,7 @@ body {
 }
 footer {
     text-align: right;
-    font-size: 1vmin;
+    font-size: calc(1vmin * var(--font-scale));
     color: rgba(188, 183, 175, 0.3);
     padding: 4vmin 0 0 2vmin;
     position: relative;
@@ -34,6 +34,7 @@ footer {
     --overlay-bg: rgba(0, 0, 0, 0.9);
     --lyrics-color: rgba(233, 223, 203, 0.55);
     --border-subtle: rgba(179, 174, 165, 0.15);
+    --font-scale: 1;
 }
 
 /* ============================================================
@@ -61,7 +62,7 @@ footer {
     position: absolute;
     z-index: 90;
 }
-#grass{
+#grass {
     top: 0vmin;
 }
 #headphone {
@@ -78,7 +79,7 @@ footer {
     transform-origin: left;
     right: 2vmin;
     top: 24vmin;
-    font-size: 80%;
+    font-size: calc(1.2vmin * var(--font-scale));
     color: var(--text-muted);
 }
 
@@ -143,7 +144,7 @@ footer {
     width: var(--cover-size);
     height: auto;
     z-index: 99;
-    filter: drop-shadow(0 0 10px rgba(180, 162, 116, 0.05));
+    filter: drop-shadow(0 0 10px rgba(180, 162, 116, 0.2));
     cursor: pointer;
 }
 
@@ -241,7 +242,7 @@ footer {
 }
 
 #overlay-title {
-    font-size: 3.1vmin;
+    font-size: calc(3.1vmin * var(--font-scale));
     color: var(--text-main);
     margin: 0;
     font-style: italic;
@@ -249,14 +250,14 @@ footer {
 }
 
 #overlay-artist {
-    font-size: 2.4vmin;
+    font-size: calc(2.4vmin * var(--font-scale));
     color: var(--text-secondary);
     margin: 0;
     padding: 0.5vmin 2vmin 0 2vmin;
 }
 
 #overlay-label, #overlay-year {
-    font-size: 1.7vmin;
+    font-size: calc(1.7vmin * var(--font-scale));
     color: var(--muted-gold);
     margin: 0;
 }
@@ -278,7 +279,7 @@ footer {
 }
 
 #overlay-runtime {
-    font-size: 1.7vmin;
+    font-size: calc(1.7vmin * var(--font-scale));
     color: var(--muted-gold);
     margin: 0;
     padding: 0.9vmin 2vmin 0 2vmin;
@@ -286,7 +287,7 @@ footer {
 }
 
 .side-label {
-    font-size: 1.8vmin;
+    font-size: calc(1.8vmin * var(--font-scale));
     color: var(--muted-gold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -306,7 +307,7 @@ footer {
     width: 100%;
 }
 #overlay-tracklist p {
-    font-size: 1.8vmin;
+    font-size: calc(1.8vmin * var(--font-scale));
     color: var(--text-main);
     margin: 0;
     font-style: italic;
@@ -317,7 +318,7 @@ footer {
 
 #overlay-lyrics {
     display: none;
-    font-size: 1.8vmin;
+    font-size: calc(1.8vmin * var(--font-scale));
     color: var(--lyrics-color);
     font-style: italic;
     white-space: pre-line;
@@ -359,7 +360,7 @@ footer {
 #albums a {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 1.8vmin;
+    font-size: calc(1.8vmin * var(--font-scale));
     font-style: italic;
     cursor: pointer;
     transition: color 0.2s;
@@ -371,7 +372,7 @@ footer {
 
 #filter-label {
     display: none;
-    font-size: 2.2vmin;
+    font-size: calc(2.2vmin * var(--font-scale));
     color: var(--muted-gold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -381,7 +382,7 @@ footer {
 #filter-active {
     display: block;
     margin: 0.8vmax 0 0.4vmax 0;
-    font-size: 1.6vmin;
+    font-size: calc(1.6vmin * var(--font-scale));
     color: var(--muted-gold);
     text-transform: none;
     letter-spacing: 0;
@@ -392,7 +393,7 @@ footer {
 }
 
 .filter-label {
-    font-size: 1.5vmin;
+    font-size: calc(1.5vmin * var(--font-scale));
     color: rgba(243, 233, 215, 0.35);
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -413,7 +414,7 @@ footer {
 #bands a, #years a, #labels a {
     color: var(--text-subtle);
     text-decoration: none;
-    font-size: 1.8vmin;
+    font-size: calc(1.8vmin * var(--font-scale));
     font-style: italic;
     cursor: pointer;
     transition: color 0.2s;
@@ -431,6 +432,77 @@ footer {
     display: flex;
 }
 
+/* ============================================================
+   MEDIA PORTS
+   ============================================================ */
+
+@media (max-width: 700px) {
+    :root { --font-scale: 2.2; } /* all vmin fonts scale up automatically */
+
+    html, body { overflow-x: hidden; }
+
+    .titulum {
+        top: 10vmin;
+        transform: translateX(-50%);
+    }
+
+    #player, #arm, #headphone, #grass {
+        transform: scale(1.5);
+        transform-origin: top right;
+    }
+    #spinner {
+        transform: scale(1.5);
+        transform-origin: top right;
+    }
+    #spinner.playing {
+        animation: vspin 2s linear infinite;
+        transform-origin: center;
+    }
+    #spinner.enlarged {
+        transform: scale(2.25); /* 1.5 × 1.5 since already scaled */
+    }
+
+    .cover { width: 15vmax; }
+
+    .vinyls {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40vmin 7vmin 7vmin 5vmin;
+        gap: 7vmin;
+        align-items: center;
+        justify-items: center;
+    }
+    .vinyls.compact {
+        grid-template-columns: repeat(1, 1fr);
+        padding-left: 50vw;
+        padding-right: 2vmin;
+    }
+    .vinyls.compact #albums {
+        left: 2vmin;
+        right: auto;
+        top: 22vmin;
+        width: 46vw;
+        text-align: left;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    :root { --font-scale: 1.3; }
+
+    .vinyls {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+    .vinyls.compact { grid-template-columns: repeat(2, 1fr); }
+    #overlay-lyrics { max-width: 50vw; }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+    .vinyls {
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+    }
+    .vinyls.compact { grid-template-columns: repeat(3, 1fr); }
+}
 
 /* ============================================================
    LIGHT-MODE
@@ -461,8 +533,7 @@ body.light-mode #filter-label,
 body.light-mode .filter-label { color: rgba(27, 24, 20, 0.75); }
 
 body.light-mode #invert { background-image: url("../assets/hold.png"); }
-body.light-mode #lines { background-image: url("../assets/lines dark.png"); }
-body.light-mode .titulum img { background-image: url("../assets/titulum\ dark.png"); }
+body.light-mode #lines  { background-image: url("../assets/lines dark.png"); }
 
 body.light-mode .cover {
     filter: drop-shadow(0 0 10px rgba(60, 40, 20, 0.15));
@@ -475,93 +546,4 @@ body.light-mode #overlay-cover {
 body.light-mode .buttons {
     filter: drop-shadow(0 0 15px rgba(40, 30, 20, 0.4));
     /* dark halo instead of black on dark bg */
-}
-
-
-/* ============================================================
-   MEDIA PORTS
-   ============================================================ */
-
-
-@media (max-width: 700px) {
-    .titulum { 
-        top: 10vmin; 
-        left: 50%;
-        transform: translateX(-50%)  scale(1.5);
-    }
-
-    #player, #arm, #headphone, #grass {
-        transform: scale(1.5);
-        transform-origin: top right;
-    }
-    #spinner {
-        transform: scale(1.5);
-        transform-origin: top right; /* match the player scale anchor */
-        /* top: 5.0vmin;
-        right: 3.9vmin; */
-    }
-    #spinner.playing {
-        animation: vspin 2s linear infinite;
-        transform-origin: center; /* but spin from centre */
-    }
-    #spinner.enlarged {
-        transform: scale(2.25); /* 1.5 × 1.5 since already scaled */
-    }
-
-    .vinyls {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 40vmin 7vmin 7vmin 5vmin;
-        gap: 7vmin;
-        align-items: center;
-        justify-items: center;
-    }
-    .cover { width: 15vmax; }
-
-    html, body { 
-        overflow-x: hidden;
-
-        font-size: 150%;
-    }
-
-    .vinyls.compact {
-        grid-template-columns: repeat(1, 1fr);
-        padding-left: 50vw;
-        padding-right: 2vmin;
-    }
-    .vinyls.compact #albums {
-        left: 2vmin;
-        right: auto;
-        top: 22vmin;
-        width: 46vw;
-        text-align: left;
-    }
-    .vinyls.compact #albums a { font-size: 2.8vmin; }
-
-    .filter-label  { font-size: 2.4vmin; }
-    #filter-label  { font-size: 2.4vmin; }
-    #filter-active { font-size: 2.6vmin; }
-    #bands a, #years a, #labels a { font-size: 2.8vmin; }
-}
-
-@media (min-width: 701px) and (max-width: 900px) {
-    .vinyls {
-        grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
-    }
-    .vinyls.compact { grid-template-columns: repeat(2, 1fr); }
-
-    #overlay-title   { font-size: 3.5vmin; }
-    #overlay-artist  { font-size: 2.5vmin; }
-    #overlay-label,
-    #overlay-year    { font-size: 2vmin; }
-    #overlay-tracklist p { font-size: 2vmin; }
-    #overlay-lyrics  { max-width: 50vw; }
-}
-
-@media (min-width: 900px) and (max-width: 1200px) {
-    .vinyls {
-        grid-template-columns: repeat(4, 1fr);
-        justify-items: center;
-    }
-    .vinyls.compact { grid-template-columns: repeat(3, 1fr); }
 }
