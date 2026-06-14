@@ -7,6 +7,7 @@
 if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-mode');
     document.documentElement.classList.add('light-mode');
+    document.querySelector('.titulum img').src = 'assets/titulum dark.png';
 }
 
 
@@ -29,6 +30,7 @@ const albums       = document.getElementById('albums');
 const bands        = document.getElementById('bands');
 const years        = document.getElementById('years');
 const audio        = document.getElementById('overlay-audio');
+const titulum = document.querySelector('.titulum img');
 audio.volume = 0.3;
 
 /* shared playback state */
@@ -50,11 +52,13 @@ document.addEventListener('keydown', (e) => {
         document.documentElement.classList.toggle('light-mode');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
         restoreHighlight();
+        titulum.src = isLight ? 'assets/titulum dark.png' : 'assets/titulum.png';
     }
 });
 document.getElementById('invert').addEventListener('click', () => {
     const isLight = document.body.classList.toggle('light-mode');
-      document.documentElement.classList.toggle('light-mode');
+    document.documentElement.classList.toggle('light-mode');
      localStorage.setItem('theme', isLight ? 'light' : 'dark');
      restoreHighlight(); /* update tracklist colors immediately */
+     titulum.src = isLight ? 'assets/titulum dark.png' : 'assets/titulum.png';
 });

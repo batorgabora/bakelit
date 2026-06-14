@@ -2,6 +2,8 @@ html, body {
     background-color: var(--bg);
     overflow-x: hidden;
     position: relative;
+
+    font-size: 130%;
 }
 body {
     font-family: 'Courier New', Courier, monospace;
@@ -53,14 +55,18 @@ footer {
 #headphone, #grass {
     width: calc(var(--vinyl-size) * 1.8);
     height: auto;
-    top: 0.0vmin;
+    top: 1.2vmin;
     right: 16.4vmin;
     pointer-events: none;
     position: absolute;
-    z-index: 99;
+    z-index: 90;
+}
+#grass{
+    top: 0vmin;
 }
 #headphone {
-    z-index: 999;
+    position: fixed;
+    z-index: 99;
 }
 #player, #arm, #headphone, #grass {
     pointer-events: none;
@@ -137,7 +143,7 @@ footer {
     width: var(--cover-size);
     height: auto;
     z-index: 99;
-    filter: drop-shadow(0 0 10px rgba(200, 180, 130, 0.05));
+    filter: drop-shadow(0 0 10px rgba(180, 162, 116, 0.05));
     cursor: pointer;
 }
 
@@ -165,6 +171,11 @@ footer {
     top: 5.0vmin;
     right: 3.9vmin;
     z-index: 9999;
+    opacity: 0; /* hidden until an album is selected */
+    transition: opacity 0.4s ease;
+}
+#spinner.active {
+    opacity: 1;
 }
 
 @keyframes vspin {
@@ -200,6 +211,7 @@ footer {
     height: var(--lines-size);
     left: 7vmax;
     top: 2vmax;
+    z-index: 9;
 }
 
 /* ============================================================
@@ -225,7 +237,7 @@ footer {
     max-height: 40vmin;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 30px rgba(200, 180, 130, 0.2));
+    filter: drop-shadow(0 0 30px rgba(200, 180, 130, 0.25));
 }
 
 #overlay-title {
@@ -237,7 +249,7 @@ footer {
 }
 
 #overlay-artist {
-    font-size: 2.1vmin;
+    font-size: 2.4vmin;
     color: var(--text-secondary);
     margin: 0;
     padding: 0.5vmin 2vmin 0 2vmin;
@@ -249,7 +261,7 @@ footer {
     margin: 0;
 }
 #overlay-label {
-    padding: 0.8vmin 2vmin 0vmin 2vmin;
+    padding: 1.1vmin 2vmin 0vmin 2vmin;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -266,15 +278,15 @@ footer {
 }
 
 #overlay-runtime {
-    font-size: 1.6vmin;
+    font-size: 1.7vmin;
     color: var(--muted-gold);
     margin: 0;
-    padding: 0.6vmin 2vmin 0 2vmin;
+    padding: 0.9vmin 2vmin 0 2vmin;
     letter-spacing: 0.05em;
 }
 
 .side-label {
-    font-size: 1.4vmin;
+    font-size: 1.8vmin;
     color: var(--muted-gold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -294,7 +306,7 @@ footer {
     width: 100%;
 }
 #overlay-tracklist p {
-    font-size: 1.6vmin;
+    font-size: 1.8vmin;
     color: var(--text-main);
     margin: 0;
     font-style: italic;
@@ -305,7 +317,7 @@ footer {
 
 #overlay-lyrics {
     display: none;
-    font-size: 1.5vmin;
+    font-size: 1.8vmin;
     color: var(--lyrics-color);
     font-style: italic;
     white-space: pre-line;
@@ -426,7 +438,7 @@ footer {
 
 body.light-mode {
     --text-main: #2a2520;
-    --muted-gold: rgba(80, 65, 40, 0.75);
+    --muted-gold: rgba(39, 31, 17, 0.75);
     --bg: #aba7a1;
     --text-secondary: rgba(27, 24, 20, 0.75);
     --text-muted: rgba(27, 24, 20, 0.75);
@@ -449,7 +461,21 @@ body.light-mode #filter-label,
 body.light-mode .filter-label { color: rgba(27, 24, 20, 0.75); }
 
 body.light-mode #invert { background-image: url("../assets/hold.png"); }
+body.light-mode #lines { background-image: url("../assets/lines dark.png"); }
+body.light-mode .titulum img { background-image: url("../assets/titulum\ dark.png"); }
 
+body.light-mode .cover {
+    filter: drop-shadow(0 0 10px rgba(60, 40, 20, 0.15));
+    /* centred dark shadow, mirrors the dark mode warm glow */
+}
+body.light-mode #overlay-cover {
+    filter: drop-shadow(0 0 30px rgba(48, 32, 15, 0.4));
+    /* stronger centred shadow on overlay cover, mirrors dark mode */
+}
+body.light-mode .buttons {
+    filter: drop-shadow(0 0 15px rgba(40, 30, 20, 0.4));
+    /* dark halo instead of black on dark bg */
+}
 
 
 /* ============================================================
@@ -491,8 +517,9 @@ body.light-mode #invert { background-image: url("../assets/hold.png"); }
     .cover { width: 15vmax; }
 
     html { 
-        overflow-x: hidden; 
-        font-size: 130%;
+        overflow-x: hidden;
+
+        font-size: 150%;
     }
 
     .vinyls.compact {
