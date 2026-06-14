@@ -1,0 +1,25 @@
+body.light-mode {
+    --text-main: #2a2520;
+    --muted-gold: rgba(80, 65, 40, 0.75);
+    --bg: #aba7a1;
+    --text-secondary: rgba(27, 24, 20, 0.75);
+    --text-muted: rgba(27, 24, 20, 0.75);
+    --text-subtle: rgba(60, 50, 40, 0.6);
+    --overlay-bg: rgba(220, 215, 206, 0.97);
+    --lyrics-color: rgba(27, 24, 20, 0.75);
+    --border-subtle: rgba(60, 50, 40, 0.15);
+    background-color: var(--bg);
+}
+
+html.light-mode { background-color: #aba7a1; }
+
+body.light-mode #bands a:hover,
+body.light-mode #years a:hover,
+body.light-mode #labels a:hover { color: #1a1007; }
+
+body.light-mode #albums a:hover { color: #1a1007; }
+
+body.light-mode #filter-label,
+body.light-mode .filter-label { color: rgba(27, 24, 20, 0.75); }
+
+body.light-mode #invert { background-image: url("../assets/hold.png"); }

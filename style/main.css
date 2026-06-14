@@ -1,12 +1,12 @@
 html, body {
-    background-color: #131414;
+    background-color: var(--bg);
     overflow-x: hidden;
     max-width: 100%;
 }
 body {
-  font-family: 'Courier New', Courier, monospace;
-  padding: 0;
-  color: var(--text-main); /* #B3AEA5 */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0;
+    color: var(--text-main);
 }
 footer {
     text-align: right;
@@ -25,7 +25,18 @@ footer {
     --lines-size: 3vmax;
     --muted-gold: rgba(239, 225, 196, 0.55);
     --text-main: #cbc2b3;
+    --bg: #131414;
+    --text-secondary: rgba(179, 174, 165, 0.75);
+    --text-muted: rgba(199, 190, 171, 0.55);
+    --text-subtle: rgba(179, 174, 165, 0.6);
+    --overlay-bg: rgba(0, 0, 0, 0.9);
+    --lyrics-color: rgba(233, 223, 203, 0.55);
+    --border-subtle: rgba(179, 174, 165, 0.15);
 }
+
+/* ============================================================
+   RECORD PLAYER
+   ============================================================ */
 
 #player, #arm {
     position: fixed;
@@ -45,16 +56,15 @@ footer {
     top: 0.0vmin;
     right: 16.4vmin;
     pointer-events: none;
-    position: absolute; z-index: 99; 
+    position: absolute;
+    z-index: 99;
 }
-#headphone{
+#headphone {
     z-index: 999;
 }
-
 #player, #arm, #headphone, #grass {
     pointer-events: none;
 }
-
 
 #currentsong {
     position: fixed;
@@ -63,8 +73,12 @@ footer {
     right: 2vmin;
     top: 24vmin;
     font-size: 80%;
-    color: rgba(199, 190, 171, 0.55);
+    color: var(--text-muted);
 }
+
+/* ============================================================
+   SMUDGES
+   ============================================================ */
 
 .smudges {
     border: none;
@@ -90,6 +104,10 @@ footer {
     transform: rotate(-60deg);
 }
 
+/* ============================================================
+   TITLE + LAYOUT
+   ============================================================ */
+
 .titulum {
     width: 170%;
     height: auto;
@@ -103,7 +121,6 @@ footer {
 .titulum img {
     width: 9vmax;
 }
-
 
 .vinyls {
     display: grid;
@@ -124,22 +141,20 @@ footer {
     cursor: pointer;
 }
 
+/* ============================================================
+   BUTTONS + SPINNER
+   ============================================================ */
 
-/* two buttons i made :)) */
 .buttons {
     background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
-
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-
     position: fixed;
-
     filter: drop-shadow(0 0 15px #000000);
-
     z-index: 9999;
 }
 
@@ -147,13 +162,11 @@ footer {
     background-image: url("../assets/vinyl.png");
     width: var(--vinyl-size);
     height: var(--vinyl-size);
-
     top: 5.0vmin;
     right: 3.9vmin;
     z-index: 9999;
 }
 
-/* spinning disk for both overlay and regular view */
 @keyframes vspin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -176,22 +189,23 @@ footer {
     background-image: url("../assets/lines.png");
     width: var(--lines-size);
     height: var(--lines-size);
-
     left: 2vmin;
     top: 3.5vmin;
     transform: rotate(1deg);
 }
 
 #invert {
-    background-image: url("../assets/nap.png"); /* sun = switch to light */
+    background-image: url("../assets/nap.png");
     width: var(--lines-size);
     height: var(--lines-size);
     left: 7vmax;
-    top: 2vmax; /* adjust to sit below #lines */
+    top: 2vmax;
 }
 
+/* ============================================================
+   OVERLAY
+   ============================================================ */
 
-/* overlay view when you click on an album */
 #album-overlay {
     display: none;
     flex-direction: column;
@@ -199,12 +213,10 @@ footer {
     justify-content: flex-start;
     gap: 2vh;
     padding: 10vh 0;
-
     position: fixed;
     inset: 0;
     overflow-y: auto;
-
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--overlay-bg);
     z-index: 999999;
     cursor: pointer;
 }
@@ -218,7 +230,7 @@ footer {
 
 #overlay-title {
     font-size: 3.1vmin;
-    color: var(--text-main); /* #B3AEA5 */
+    color: var(--text-main);
     margin: 0;
     font-style: italic;
     padding: 0vmin 2vmin 0vmin 2vmin;
@@ -226,14 +238,14 @@ footer {
 
 #overlay-artist {
     font-size: 2.1vmin;
-    color: rgba(179, 174, 165, 0.75);
+    color: var(--text-secondary);
     margin: 0;
     padding: 0.5vmin 2vmin 0 2vmin;
 }
 
 #overlay-label, #overlay-year {
     font-size: 1.7vmin;
-    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
+    color: var(--muted-gold);
     margin: 0;
 }
 #overlay-label {
@@ -248,14 +260,14 @@ footer {
 #overlay-artist:hover,
 #overlay-year:hover,
 #overlay-label:hover {
-    color:  rgb(184, 180, 180);
+    color: rgb(184, 180, 180);
     cursor: pointer;
     transition: color 0.2s;
 }
 
 #overlay-runtime {
     font-size: 1.6vmin;
-    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
+    color: var(--muted-gold);
     margin: 0;
     padding: 0.6vmin 2vmin 0 2vmin;
     letter-spacing: 0.05em;
@@ -263,7 +275,7 @@ footer {
 
 .side-label {
     font-size: 1.4vmin;
-    color: var(--muted-gold); /* rgba(218, 208, 188, 0.55) */
+    color: var(--muted-gold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin: 1.8vmin 0 0.6vmin 0;
@@ -288,14 +300,13 @@ footer {
     font-style: italic;
 }
 #overlay-tracklist p span {
-    /* color inherited from parent — rgba(218, 208, 188, 0.55) */
     margin-right: 1vmin;
 }
 
 #overlay-lyrics {
     display: none;
     font-size: 1.5vmin;
-    color: rgba(233, 223, 203, 0.55);
+    color: var(--lyrics-color);
     font-style: italic;
     white-space: pre-line;
     text-align: center;
@@ -305,8 +316,10 @@ footer {
     margin: 0 auto;
 }
 
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 
-/* navbar element as link to album overlay views */
 #navbar {
     display: none;
     flex-direction: column;
@@ -316,24 +329,23 @@ footer {
     padding-top: 12.5vmax;
     padding-bottom: 4vmax;
     width: 22vmax;
-    height: 100vh;                        /* fixed full height */
+    height: 100vh;
     max-height: 100vh;
     overflow-y: auto;
-    box-sizing: border-box;               /* padding counts inside the height */
+    box-sizing: border-box;
     scrollbar-width: none;
 }
 #navbar::-webkit-scrollbar {
     display: none;
 }
 
-/* albums */
 #albums {
     display: flex;
     flex-direction: column;
     gap: 0.7vmax;
 }
 #albums a {
-    color: var(--text-main); /* #B3AEA5 */
+    color: var(--text-main);
     text-decoration: none;
     font-size: 1.8vmin;
     font-style: italic;
@@ -345,11 +357,10 @@ footer {
     text-decoration: underline;
 }
 
-/* filter label when filtering */
 #filter-label {
     display: none;
     font-size: 2.2vmin;
-    color: var(--muted-gold); /* was rgba(179, 174, 165, 0.35) */
+    color: var(--muted-gold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin: 0 0 1vmax 0;
@@ -359,248 +370,51 @@ footer {
     display: block;
     margin: 0.8vmax 0 0.4vmax 0;
     font-size: 1.6vmin;
-    color: var(--muted-gold); /* was var(--text-main) */
+    color: var(--muted-gold);
     text-transform: none;
     letter-spacing: 0;
     font-style: italic;
 }
 .filter-all {
-    margin-bottom: 0.5vmax; /* matches the gap on #bands, #years, #labels */
+    margin-bottom: 0.5vmax;
 }
-
 
 .filter-label {
     font-size: 1.5vmin;
     color: rgba(243, 233, 215, 0.35);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    margin: 0 0 0 0;
+    margin: 0;
     padding: 0 0 0.5vmax 0;
     font-style: normal;
 }
 
-/* band filter nav — sits below the album list in compact view */
-/* make the artist name in the overlay feel clickable */
-#bands {
+#bands, #years, #labels {
     display: flex;
     flex-direction: column;
     gap: 0.5vmax;
     margin-top: 2vmax;
     padding-top: 1.5vmax;
-    border-top: 1px solid rgba(179, 174, 165, 0.15);
+    border-top: 1px solid var(--border-subtle);
 }
-#bands a {
-    color: rgba(179, 174, 165, 0.6);
+
+#bands a, #years a, #labels a {
+    color: var(--text-subtle);
     text-decoration: none;
     font-size: 1.8vmin;
     font-style: italic;
     cursor: pointer;
     transition: color 0.2s;
 }
-#bands a:hover { color: white; }
-#bands a.active {
+
+#bands a:hover, #years a:hover, #labels a:hover { color: white; }
+
+#bands a.active, #years a.active, #labels a.active {
     color: var(--text-main);
     text-decoration: underline;
     text-underline-offset: 0.3em;
 }
-
-/* years */
-#years {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vmax;
-    margin-top: 2vmax;
-    padding-top: 1.5vmax;
-    border-top: 1px solid rgba(179, 174, 165, 0.15);
-}
-#years a {
-    color: rgba(179, 174, 165, 0.6);
-    text-decoration: none;
-    font-size: 1.8vmin;
-    font-style: italic;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-#years a:hover { color: white; }
-#years a.active {
-    color: var(--text-main);
-    text-decoration: underline;
-    text-underline-offset: 0.3em;
-}
-
-
-/* labels */
-#labels {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vmax;
-    margin-top: 2vmax;
-    padding-top: 1.5vmax;
-    border-top: 1px solid rgba(179, 174, 165, 0.15);
-}
-#labels a {
-    color: rgba(179, 174, 165, 0.6);
-    text-decoration: none;
-    font-size: 1.8vmin;
-    font-style: italic;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-#labels a:hover { color: white; }
-#labels a.active {
-    color: var(--text-main);
-    text-decoration: underline;
-    text-underline-offset: 0.3em;
-}
-
-
-
 
 .vinyls.compact #albums {
     display: flex;
-}
-
-
-@media (max-width: 700px) {
-    .titulum {
-        top:5vmin;
-    }
-    #player, #arm, #headphone, #grass {
-        transform: scale(1.5);
-        transform-origin: top right;
-    }
-    #spinner{
-        transform-origin: center; /* keep spinner spinning from its own center */
-    }
-    .vinyls {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 40vmin 7vmin 7vmin 5vmin;
-        gap: 7vmin;
-        align-items: center;
-        justify-items: center;
-    }
-    .cover {
-        width: 15vmax;
-    }
-    html {
-        overflow-x: hidden;
-    }
-    .vinyls.compact {
-        grid-template-columns: repeat(1, 1fr);
-        padding-left: 50vw;
-        padding-right: 2vmin;
-    }
-    .vinyls.compact #albums {
-        left: 2vmin;
-        right: auto;
-        top: 22vmin;
-        width: 46vw;
-        text-align: left;
-    }
-    .vinyls.compact #albums a {
-        font-size: 2.8vmin;
-    }
-    .filter-label { font-size: 2.4vmin; }
-    #filter-label { font-size: 2.4vmin; }
-    #filter-active { font-size: 2.6vmin; }
-    #bands a    { font-size: 2.8vmin; }
-    #years a { font-size: 2.8vmin; }
-    #labels a { font-size: 2.8vmin; }
-}
-
-@media (min-width: 701px) and (max-width: 900px) {
-    .vinyls {
-        grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
-    }
-    .vinyls.compact {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #overlay-title { font-size: 3.5vmin; }
-    #overlay-artist { font-size: 2.5vmin; }
-    #overlay-label, #overlay-year { font-size: 2vmin; }
-    #overlay-tracklist p { font-size: 2vmin; }
-    #overlay-lyrics { max-width: 50vw; }
-}
-
-@media (min-width: 900px) and (max-width: 1200px) {
-    .vinyls {
-        grid-template-columns: repeat(4, 1fr);
-        justify-items: center;
-    }
-    .vinyls.compact {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-
-
-body.light-mode {
-    --text-main: #2a2520;
-    --muted-gold: rgba(80, 65, 40, 0.75);
-    background-color: #aba7a1;
-}
-
-html.light-mode,
-body.light-mode {
-    background-color: #aba7a1;
-}
-
-body.light-mode #album-overlay {
-    background-color: rgba(220, 215, 206, 0.97);
-}
-
-body.light-mode #bands a,
-body.light-mode #years a,
-body.light-mode #labels a {
-    color: rgba(60, 50, 40, 0.6);
-}
-
-body.light-mode #bands a:hover,
-body.light-mode #years a:hover,
-body.light-mode #labels a:hover {
-    color: #1a1007;
-}
-
-body.light-mode #overlay-title {
-    color: #2a2520;
-}
-
-body.light-mode #overlay-artist {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #overlay-tracklist p {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #overlay-lyrics {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode .side-label {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #overlay-runtime {
-    color:rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #currentsong {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #albums a {
-    color: #2a2520;
-}
-
-body.light-mode #filter-label,
-body.light-mode .filter-label {
-    color: rgba(27, 24, 20, 0.75);
-}
-
-body.light-mode #invert {
-    background-image: url("../assets/hold.png"); /* moon = switch to dark */
 }
