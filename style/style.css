@@ -418,3 +418,122 @@ footer {
 .vinyls.compact #albums {
     display: flex;
 }
+
+
+/* ============================================================
+   LIGHT-MODE
+   ============================================================ */
+
+body.light-mode {
+    --text-main: #2a2520;
+    --muted-gold: rgba(80, 65, 40, 0.75);
+    --bg: #aba7a1;
+    --text-secondary: rgba(27, 24, 20, 0.75);
+    --text-muted: rgba(27, 24, 20, 0.75);
+    --text-subtle: rgba(60, 50, 40, 0.6);
+    --overlay-bg: rgba(220, 215, 206, 0.97);
+    --lyrics-color: rgba(27, 24, 20, 0.75);
+    --border-subtle: rgba(60, 50, 40, 0.15);
+    background-color: var(--bg);
+}
+
+html.light-mode { background-color: #aba7a1; }
+
+body.light-mode #bands a:hover,
+body.light-mode #years a:hover,
+body.light-mode #labels a:hover { color: #1a1007; }
+
+body.light-mode #albums a:hover { color: #1a1007; }
+
+body.light-mode #filter-label,
+body.light-mode .filter-label { color: rgba(27, 24, 20, 0.75); }
+
+body.light-mode #invert { background-image: url("../assets/hold.png"); }
+
+
+
+/* ============================================================
+   MEDIA PORTS
+   ============================================================ */
+
+
+@media (max-width: 700px) {
+    .titulum { 
+        top: 10vmin; 
+        scale: 1.5;
+    }
+
+    #player, #arm, #headphone, #grass {
+        transform: scale(1.5);
+        transform-origin: top right;
+    }
+    #spinner {
+        transform: scale(1.5);
+        transform-origin: top right; /* match the player scale anchor */
+        top: 5.0vmin;
+        right: 3.9vmin;
+    }
+    #spinner.playing {
+        animation: vspin 2s linear infinite;
+        transform-origin: center; /* but spin from centre */
+    }
+    #spinner.enlarged {
+        transform: scale(2.25); /* 1.5 × 1.5 since already scaled */
+    }
+
+    .vinyls {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40vmin 7vmin 7vmin 5vmin;
+        gap: 7vmin;
+        align-items: center;
+        justify-items: center;
+    }
+    .cover { width: 15vmax; }
+
+    html { 
+        overflow-x: hidden; 
+        font-size: 130%;
+    }
+
+    .vinyls.compact {
+        grid-template-columns: repeat(1, 1fr);
+        padding-left: 50vw;
+        padding-right: 2vmin;
+    }
+    .vinyls.compact #albums {
+        left: 2vmin;
+        right: auto;
+        top: 22vmin;
+        width: 46vw;
+        text-align: left;
+    }
+    .vinyls.compact #albums a { font-size: 2.8vmin; }
+
+    .filter-label  { font-size: 2.4vmin; }
+    #filter-label  { font-size: 2.4vmin; }
+    #filter-active { font-size: 2.6vmin; }
+    #bands a, #years a, #labels a { font-size: 2.8vmin; }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .vinyls {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+    .vinyls.compact { grid-template-columns: repeat(2, 1fr); }
+
+    #overlay-title   { font-size: 3.5vmin; }
+    #overlay-artist  { font-size: 2.5vmin; }
+    #overlay-label,
+    #overlay-year    { font-size: 2vmin; }
+    #overlay-tracklist p { font-size: 2vmin; }
+    #overlay-lyrics  { max-width: 50vw; }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+    .vinyls {
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+    }
+    .vinyls.compact { grid-template-columns: repeat(3, 1fr); }
+}
