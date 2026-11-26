@@ -454,7 +454,7 @@ footer {
     /* spinner is NOT scaled with the player any more: it is placed directly on the platter
        and always scales/rotates around its own centre, so it can't drift between states */
     #spinner {
-        top: 19.7vmin;
+        top: 5vmin;       /* was 19.7vmin: the phone renders this ~15vmin lower than the CSS says */
         right: 3.9vmin;
         transform: none;
         transform-origin: center;
