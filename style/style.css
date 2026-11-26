@@ -437,7 +437,7 @@ footer {
    ============================================================ */
 
 @media (max-width: 700px) {
-    :root { --font-scale: 2.2; } /* all vmin fonts scale up automatically */
+    :root { --font-scale: 1.6; } /* all vmin fonts scale up automatically (was 2.2, too big) */
 
     html, body { overflow-x: hidden; }
 
@@ -450,16 +450,28 @@ footer {
         transform: scale(1.5);
         transform-origin: top right;
     }
+
+    /* spinner is NOT scaled with the player any more: it is placed directly on the platter
+       and always scales/rotates around its own centre, so it can't drift between states */
     #spinner {
-        transform: scale(1.5);
-        transform-origin: top right;
+        top: 19.7vmin;
+        right: 3.9vmin;
+        transform: none;
+        transform-origin: center;
     }
     #spinner.playing {
         animation: vspin 2s linear infinite;
-        transform-origin: center;
     }
+    /* overlay open: bigger vinyl, nudged left so it stays on screen */
     #spinner.enlarged {
-        transform: scale(2.25); /* 1.5 × 1.5 since already scaled */
+        transform: translate(-5vmin, 0) scale(2);
+    }
+    #spinner.enlarged.playing {
+        animation: vspin-large-mobile 2s linear infinite;
+    }
+    @keyframes vspin-large-mobile {
+        from { transform: translate(-5vmin, 0) scale(2) rotate(0deg); }
+        to   { transform: translate(-5vmin, 0) scale(2) rotate(360deg); }
     }
 
     .cover { width: 15vmax; }

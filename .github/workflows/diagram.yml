@@ -1,0 +1,16 @@
+name: Repo diagram
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+jobs:
+  diagram:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: githubocto/repo-visualizer@main
+        with:
+          output_file: "repo-diagram.svg"
+          excluded_paths: "node_modules,.github"
