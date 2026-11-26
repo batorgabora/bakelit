@@ -22,3 +22,4 @@ spinning record are drawings I made myself. All album metadata is stored directl
 on the cover images, and lyrics are fetched at runtime from per-album JSON files.<br><br>
 The project started as a way to catalogue my records and turned into something I actually use to listen to music — 
 which I think is the best thing a side project can become.<br><br>
+![Repo diagram](repo-diagram.svg)
